@@ -194,6 +194,65 @@ const P2O5_WEAK_ACID = 0.28
 """P2O5 grade of the merchant acid leaving the evaporators (mass fraction)."""
 const P2O5_MERCHANT_ACID = 0.52
 
+"""Grades of phosphoric acid the plant can deliver, from the weak acid to food grade."""
+const ACID_GRADES = (:weak, :merchant, :technical, :food)
+
+"""P2O5 mass fraction of each grade: the traded grades are the merchant and the food ones."""
+const ACID_GRADE_P2O5 = (weak = P2O5_WEAK_ACID, merchant = P2O5_MERCHANT_ACID,
+    technical = 0.540, food = 0.610)
+
+"""`true` when a symbol names a grade of phosphoric acid."""
+is_acid_grade(sym::Symbol) = sym in ACID_GRADES
+
+"""
+    acid_grade_of(p2o5_pct) -> Symbol
+
+Grade a P2O5 percentage belongs to, which is the label the acid evaluation prints: the
+weak acid of the filters, the merchant acid of 52 %, the technical grades above it and
+the food grade of 61 %.
+"""
+function acid_grade_of(p2o5_pct::Real)
+    x = Float64(p2o5_pct)
+    x >= 100.0 * ACID_GRADE_P2O5.food ? :food :
+    x >= 100.0 * ACID_GRADE_P2O5.technical ? :technical :
+    x >= 45.0 ? :merchant : :weak
+end
+
+"""
+    ACID_SPECIFICATIONS
+
+Specification of the merchant acid, as the quality clause of an acid contract writes
+it: the P2O5 the acid has to carry and the impurities it has to stay under. Every row
+is `(unit, comparator, limit, basis)`, so the acid evaluation reads the same table the
+customer does.
+"""
+const ACID_SPECIFICATIONS = Dict{Symbol,NamedTuple}(
+    :p2o5 => (unit = :wt_pct, comparator = :ge, limit = 52.0,
+        basis = "P2O5 of the merchant acid; 52 % is the traded grade"),
+    :so4 => (unit = :wt_pct, comparator = :le, limit = 1.50,
+        basis = "sulphate carried over from the attack: it corrodes the storage and the DAP"),
+    :f => (unit = :wt_pct, comparator = :le, limit = 0.50,
+        basis = "fluorine of the apatite that stayed in solution"),
+    :solids => (unit = :wt_pct, comparator = :le, limit = 0.50,
+        basis = "gypsum fines and unclarified sludge the filters let through"),
+    :fe_al => (unit = :wt_pct, comparator = :le, limit = 1.00,
+        basis = "iron and aluminium of the ore, which sequester P2O5"),
+    :colour => (unit = :count, comparator = :le, limit = 4.0,
+        basis = "Gardner colour: the organics of the ore and the evaporation temperature"),
+)
+
+"""Power allocated to the acid train: the air blower of the acid plant, per t of sulphur."""
+const ACID_POWER_KWH_PER_T_SULPHUR = 45.0
+
+"""Power allocated to the acid train: pumps and vacuum of the evaporator set, per m3 fed."""
+const ACID_POWER_KWH_PER_M3_FEED = 6.5
+
+"""Instrument that evidences each row of [`ACID_SPECIFICATIONS`](@ref)."""
+const ACID_SPEC_TAGS = Dict{Symbol,Symbol}(
+    :p2o5 => :STRONG_ACID_P2O5, :so4 => :ACID_SO4, :f => :ACID_F, :solids => :ACID_SOLIDS,
+    :fe_al => :ACID_FE_AL, :colour => :ACID_COLOUR,
+)
+
 """Lower heating value of a fuel or a feedstock, in GJ per tonne (registered values)."""
 energy_density_gj_per_t(material::Symbol) = get(
     (natural_gas = 48.0, coal = 25.8, sulfur = 9.2), material, 0.0)

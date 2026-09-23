@@ -1,0 +1,438 @@
+{
+    "summary": {
+        "grade_p2o5": 55.85244380353741,
+        "revenue_per_t_p2o5": 905,
+        "merchant_h3po4_kt": 343.91148294319123,
+        "electricity_per_p2o5": 60.822192437765764,
+        "merchant_p2o5_kt": 249.0773493014283,
+        "cost_per_t_p2o5": 503.326026890263,
+        "water_per_p2o5": 2.817754001996941,
+        "grade_h3po4": 77.11779825964952,
+        "filtration_yield_pct": 97.68139539950859,
+        "status": "compliant",
+        "cost_per_t_acid": 281.1198863174617,
+        "grade": "technical",
+        "margin_per_t_p2o5": 401.673973109737,
+        "thermal_gj_per_p2o5": 1.1394222966416656,
+        "concentration_yield_pct": 101.9581380607818,
+        "steam_per_p2o5": 0.4114923425935953,
+        "share_of_filters_pct": 24.469953134587634,
+        "hours": 8568,
+        "quality_failures": [
+        ],
+        "water_evaporated_t": 1.5747884665137124e6,
+        "quality_status": "compliant",
+        "merchant_kt": 445.9560447839402,
+        "economy": 3.7597534787046567
+    },
+    "cost": {
+        "per_t_p2o5": 503.326026890263,
+        "items": {
+            "water": 3.459577380997083e6,
+            "rock": 6.5755585828695685e7,
+            "electricity": 5.262378652549907e6,
+            "gypsum_disposal": 4.269175034783825e6,
+            "steam": 9.214791996213006e6,
+            "reagents": 1.643452648341453e6,
+            "sulphur": 3.576215107066516e7
+        },
+        "currency": "USD",
+        "rows": [
+            {
+                "per_t_p2o5": 0.2639966500892846,
+                "item": "rock",
+                "unit": "usd",
+                "value": 65755.58582869568,
+                "share_pct": 52.450426956927885
+            },
+            {
+                "per_t_p2o5": 0.14357849547927595,
+                "item": "sulphur",
+                "unit": "usd",
+                "value": 35762.15107066516,
+                "share_pct": 28.52594298895246
+            },
+            {
+                "per_t_p2o5": 0.0369957044350165,
+                "item": "steam",
+                "unit": "usd",
+                "value": 9214.791996213005,
+                "share_pct": 7.350246650980845
+            },
+            {
+                "per_t_p2o5": 0.02112748777562059,
+                "item": "electricity",
+                "unit": "usd",
+                "value": 5262.378652549906,
+                "share_pct": 4.1975750600766935
+            },
+            {
+                "per_t_p2o5": 0.017139956912008716,
+                "item": "gypsum_disposal",
+                "unit": "usd",
+                "value": 4269.175034783825,
+                "share_pct": 3.4053388849978212
+            },
+            {
+                "per_t_p2o5": 0.013889570411359941,
+                "item": "water",
+                "unit": "usd",
+                "value": 3459.5773809970833,
+                "share_pct": 2.759557358314037
+            },
+            {
+                "per_t_p2o5": 0.006598161787696641,
+                "item": "reagents",
+                "unit": "usd",
+                "value": 1643.452648341453,
+                "share_pct": 1.3109120997502473
+            }
+        ],
+        "total": 1.2536711261224613e8,
+        "revenue": 2.254150011177926e11,
+        "allocation_pct": 24.469953134587634,
+        "margin": 1.0004788850554648e8,
+        "per_t_acid": 281.1198863174617
+    },
+    "steps": [
+        {
+            "note": "the cake carries the free P2O5 out of the circuit",
+            "step": "attack_and_filtration",
+            "in_t": 1.0420516431154753e6,
+            "yield_pct": 97.68139539950859,
+            "out_t": 1.0178905857787036e6,
+            "loss_t": 24161.0573367717
+        },
+        {
+            "note": "the closure of the evaporation against the registered merchant split",
+            "step": "concentration",
+            "in_t": 1.0178905857787036e6,
+            "yield_pct": 101.9581380607818,
+            "out_t": 244293.74058688886,
+            "loss_t": 0
+        },
+        {
+            "note": "the 24.5 % of the filtered P2O5 the storage tank receives",
+            "step": "merchant_acid",
+            "in_t": 244293.74058688886,
+            "yield_pct": 101.9581380607818,
+            "out_t": 249077.3493014283,
+            "loss_t": 0
+        }
+    ],
+    "balance": [
+        {
+            "note": "to the acid storage, the grade the customer buys",
+            "destination": "merchant_acid",
+            "p2o5_t": 249077.3493014283,
+            "share_pct": 23.902591675470994
+        },
+        {
+            "note": "to the granulation line as concentrated acid",
+            "destination": "fertiliser_route",
+            "p2o5_t": 768813.2364772753,
+            "share_pct": 73.77880372403759
+        },
+        {
+            "note": "water-soluble P2O5 that left with the phosphogypsum",
+            "destination": "gypsum_cake",
+            "p2o5_t": 24161.0573367717,
+            "share_pct": 2.3186046004914065
+        },
+        {
+            "note": "sampling and rounding of the balance, targets zero",
+            "destination": "unaccounted",
+            "p2o5_t": 4.3655745685100555e-11,
+            "share_pct": 4.1894032770372814e-15
+        }
+    ],
+    "status": "compliant",
+    "merchant": {
+        "grade_p2o5": 55.85244380353741,
+        "acid_t": 445956.0447839402,
+        "concentration_yield_pct": 101.9581380607818,
+        "electricity_kwh": 6.1910337088822424e7,
+        "acid_kt": 445.9560447839402,
+        "h3po4_t": 343911.48294319125,
+        "to_filters_t": 1.0178905857787036e6,
+        "grade_h3po4": 77.11779825964952,
+        "gypsum_loss_t": 24161.0573367717,
+        "filtration_yield_pct": 97.68139539950859,
+        "water_evaporated_t": 1.5747884665137124e6,
+        "p2o5_t": 249077.3493014283,
+        "grade": "technical",
+        "economy": 3.7597534787046567
+    },
+    "targets": {
+        "acid_solids": {
+            "comparator": "le",
+            "metric": "acid_solids",
+            "status": "compliant",
+            "unit": "wt_pct",
+            "basis": "solids of the merchant acid: the specification limit of the grade",
+            "target": 0.5,
+            "actual": 0.29432599185109604,
+            "margin_pct": 41.134801629780796
+        },
+        "acid_strength": {
+            "comparator": "ge",
+            "metric": "acid_strength",
+            "status": "compliant",
+            "unit": "wt_pct",
+            "basis": "P2O5 in the merchant acid",
+            "target": 52,
+            "actual": 55.85244380353741,
+            "margin_pct": 7.408545776033484
+        },
+        "acid_concentration_yield": {
+            "comparator": "ge",
+            "metric": "acid_concentration_yield",
+            "status": "compliant",
+            "unit": "pct",
+            "basis": "P2O5 in the merchant acid over the P2O5 the evaporators concentrate: a closure check at three per cent of meter slack",
+            "target": 97,
+            "actual": 101.9581380607818,
+            "margin_pct": 5.1114825368884595
+        },
+        "acid_cost": {
+            "comparator": "le",
+            "metric": "acid_cost",
+            "status": "compliant",
+            "unit": "usd_per_t",
+            "basis": "variable cost per t P2O5 sold as merchant acid: feed by acid share, concentration in full",
+            "target": 600,
+            "actual": 503.326026890263,
+            "margin_pct": 16.112328851622834
+        },
+        "acid_so4": {
+            "comparator": "le",
+            "metric": "acid_so4",
+            "status": "compliant",
+            "unit": "wt_pct",
+            "basis": "sulphate of the merchant acid: the specification limit of the grade",
+            "target": 1.5,
+            "actual": 1.1641849234992954,
+            "margin_pct": 22.38767176671364
+        },
+        "acid_steam": {
+            "comparator": "le",
+            "metric": "acid_steam",
+            "status": "compliant",
+            "unit": "t_ph",
+            "basis": "t steam per t P2O5 concentrated, at an economy of 3.0",
+            "target": 0.62,
+            "actual": 0.4114923425935953,
+            "margin_pct": 33.63026732361366
+        },
+        "acid_f": {
+            "comparator": "le",
+            "metric": "acid_f",
+            "status": "compliant",
+            "unit": "wt_pct",
+            "basis": "fluorine of the merchant acid: the specification limit of the grade",
+            "target": 0.5,
+            "actual": 0.35326721974317093,
+            "margin_pct": 29.346556051365813
+        },
+        "acid_electricity": {
+            "comparator": "le",
+            "metric": "acid_electricity",
+            "status": "compliant",
+            "unit": "kwh_per_t",
+            "basis": "kWh per t P2O5 concentrated, blower of the acid plant and evaporator set",
+            "target": 75,
+            "actual": 60.822192437765764,
+            "margin_pct": 18.903743416312317
+        },
+        "acid_p2o5_yield": {
+            "comparator": "ge",
+            "metric": "acid_p2o5_yield",
+            "status": "compliant",
+            "unit": "pct",
+            "basis": "P2O5 reaching the filters over the P2O5 fed to the attack",
+            "target": 96.5,
+            "actual": 97.68139539950859,
+            "margin_pct": 1.2242439373145992
+        }
+    },
+    "basis": "the historian rolled up over the operating intervals, read as the acid route",
+    "consumption": [
+        {
+            "note": "t of rock per t P2O5 sold as acid, allocated by the acid share",
+            "metric": "rock",
+            "unit": "t_ph",
+            "basis": "per_p2o5_sold",
+            "value": 3.2194713425522514
+        },
+        {
+            "note": "t of H2SO4 per t P2O5 sold as acid",
+            "metric": "sulphuric_acid",
+            "unit": "t_ph",
+            "basis": "per_p2o5_sold",
+            "value": 2.8904521045852523
+        },
+        {
+            "note": "t of sulphur burnt per t P2O5 sold as acid",
+            "metric": "sulphur",
+            "unit": "t_ph",
+            "basis": "per_p2o5_sold",
+            "value": 0.9445953649952366
+        },
+        {
+            "note": "t of steam per t P2O5 the evaporators concentrate, both products included",
+            "metric": "steam",
+            "unit": "t_ph",
+            "basis": "per_p2o5_concentrated",
+            "value": 0.4114923425935953
+        },
+        {
+            "note": "kWh per t P2O5 concentrated: blower of the acid plant and evaporator set",
+            "metric": "electricity",
+            "unit": "kwh_per_t",
+            "basis": "per_p2o5_concentrated",
+            "value": 60.822192437765764
+        },
+        {
+            "note": "m3 of evaporator feed per t P2O5 concentrated",
+            "metric": "water",
+            "unit": "m3_ph",
+            "basis": "per_p2o5_concentrated",
+            "value": 2.817754001996941
+        },
+        {
+            "note": "GJ of steam per t P2O5 concentrated",
+            "metric": "thermal_energy",
+            "unit": "gj_per_t",
+            "basis": "per_p2o5_concentrated",
+            "value": 1.1394222966416656
+        },
+        {
+            "note": "t of phosphogypsum per t P2O5",
+            "metric": "gypsum",
+            "unit": "t_ph",
+            "basis": "per_p2o5_sold",
+            "value": 4.761099142224644
+        }
+    ],
+    "quality": {
+        "values": {
+            "f": 0.35326721974317093,
+            "colour": 2.8599768677756776,
+            "fe_al": 0.19183044045712463,
+            "p2o5": 55.85244380353741,
+            "solids": 0.29432599185109604,
+            "so4": 1.1641849234992954
+        },
+        "rows": [
+            {
+                "spec": "colour",
+                "tag": "ACID_COLOUR",
+                "comparator": "le",
+                "status": "compliant",
+                "unit": "count",
+                "basis": "Gardner colour: the organics of the ore and the evaporation temperature",
+                "value": 2.8599768677756776,
+                "margin_pct": 28.50057830560806,
+                "limit": 4
+            },
+            {
+                "spec": "f",
+                "tag": "ACID_F",
+                "comparator": "le",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "basis": "fluorine of the apatite that stayed in solution",
+                "value": 0.35326721974317093,
+                "margin_pct": 29.346556051365813,
+                "limit": 0.5
+            },
+            {
+                "spec": "fe_al",
+                "tag": "ACID_FE_AL",
+                "comparator": "le",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "basis": "iron and aluminium of the ore, which sequester P2O5",
+                "value": 0.19183044045712463,
+                "margin_pct": 80.81695595428754,
+                "limit": 1
+            },
+            {
+                "spec": "p2o5",
+                "tag": "STRONG_ACID_P2O5",
+                "comparator": "ge",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "basis": "P2O5 of the merchant acid; 52 % is the traded grade",
+                "value": 55.85244380353741,
+                "margin_pct": 7.408545776033484,
+                "limit": 52
+            },
+            {
+                "spec": "so4",
+                "tag": "ACID_SO4",
+                "comparator": "le",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "basis": "sulphate carried over from the attack: it corrodes the storage and the DAP",
+                "value": 1.1641849234992954,
+                "margin_pct": 22.38767176671364,
+                "limit": 1.5
+            },
+            {
+                "spec": "solids",
+                "tag": "ACID_SOLIDS",
+                "comparator": "le",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "basis": "gypsum fines and unclarified sludge the filters let through",
+                "value": 0.29432599185109604,
+                "margin_pct": 41.134801629780796,
+                "limit": 0.5
+            }
+        ],
+        "specification": {
+            "f": {
+                "comparator": "le",
+                "unit": "wt_pct",
+                "basis": "fluorine of the apatite that stayed in solution",
+                "limit": 0.5
+            },
+            "colour": {
+                "comparator": "le",
+                "unit": "count",
+                "basis": "Gardner colour: the organics of the ore and the evaporation temperature",
+                "limit": 4
+            },
+            "fe_al": {
+                "comparator": "le",
+                "unit": "wt_pct",
+                "basis": "iron and aluminium of the ore, which sequester P2O5",
+                "limit": 1
+            },
+            "p2o5": {
+                "comparator": "ge",
+                "unit": "wt_pct",
+                "basis": "P2O5 of the merchant acid; 52 % is the traded grade",
+                "limit": 52
+            },
+            "solids": {
+                "comparator": "le",
+                "unit": "wt_pct",
+                "basis": "gypsum fines and unclarified sludge the filters let through",
+                "limit": 0.5
+            },
+            "so4": {
+                "comparator": "le",
+                "unit": "wt_pct",
+                "basis": "sulphate carried over from the attack: it corrodes the storage and the DAP",
+                "limit": 1.5
+            }
+        },
+        "status": "compliant",
+        "failures": [
+        ],
+        "basis": "the merchant acid against the specification of the traded grade",
+        "grade": "technical"
+    }
+}

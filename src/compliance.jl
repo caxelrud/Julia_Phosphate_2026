@@ -114,6 +114,18 @@ function compliance_catalogue(; frameworks::Vector{Symbol} = collect(FRAMEWORKS)
             Requirement(:iso_9001, :process_control, "Control of production",
                 :acid_strength, :wt_pct, 50.50, :ge, :kpi_report,
                 "the merchant acid leaves the evaporators at specification"),
+            Requirement(:iso_9001, :acid_specification, "Merchant acid specification",
+                :acid_so4, :wt_pct, 1.50, :le, :kpi_report,
+                "the sulphate of the merchant acid is the first limit of the traded grade"),
+            Requirement(:iso_9001, :acid_fluorine, "Fluorine of the merchant acid",
+                :acid_f, :wt_pct, 0.50, :le, :kpi_report,
+                "fluorine above the specification corrodes the storage and the customer's plant"),
+            Requirement(:iso_9001, :acid_solids, "Solids of the merchant acid",
+                :acid_solids, :wt_pct, 0.50, :le, :kpi_report,
+                "the fines the filters let through settle in the storage tanks"),
+            Requirement(:iso_9001, :acid_yield, "Yield of the acid route",
+                :acid_p2o5_yield, :pct, 96.5, :ge, :kpi_report,
+                "the P2O5 that reaches the filters over the P2O5 fed to the attack"),
         ])
     end
     append!(r, _compliance_sustainability(frameworks))
@@ -176,6 +188,9 @@ function _compliance_sustainability(frameworks::Vector{Symbol})
             Requirement(:ifa_bat, :acid_demand, "Specific acid demand",
                 :acid_consumption, :t_ph, 2.85, :le, :kpi_report,
                 "sulphuric acid per tonne of P2O5"),
+            Requirement(:ifa_bat, :acid_steam, "Steam of the acid concentration",
+                :acid_steam, :t_ph, 0.62, :le, :kpi_report,
+                "steam per tonne of P2O5 concentrated: the largest energy item of the acid route"),
             Requirement(:ifa_bat, :water_soluble, "Water-soluble loss",
                 :water_soluble_loss, :pct, 2.00, :le, :kpi_report,
                 "the P2O5 lost with the gypsum"),
@@ -233,6 +248,11 @@ function compliance_metric(name::Symbol, kpi::Dict{Symbol,Any}, fdd = nothing)
            name === :product_moisture ? kpi[:product][:moisture_pct] :
            name === :product_wsp ? kpi[:product][:wsp_pct] :
            name === :acid_strength ? kpi[:evaporation][:strength] :
+           name === :acid_so4 ? get(kpi[:acid][:quality][:values], :so4, NaN) :
+           name === :acid_f ? get(kpi[:acid][:quality][:values], :f, NaN) :
+           name === :acid_solids ? get(kpi[:acid][:quality][:values], :solids, NaN) :
+           name === :acid_p2o5_yield ? kpi[:acid][:summary][:filtration_yield_pct] :
+           name === :acid_steam ? kpi[:acid][:summary][:steam_per_p2o5] :
            name === :scope_1_t ? kpi[:carbon][:scope_1_t] :
            name === :scope_2_t ? kpi[:carbon][:scope_2_t] :
            name === :carbon_intensity ? kpi[:carbon][:intensity_kg_per_p2o5] :

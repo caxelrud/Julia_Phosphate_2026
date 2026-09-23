@@ -117,6 +117,9 @@ export Sym, to_string, to_symbol, code_string, symbol_equal, is_area, area_index
     stream_phase, streams_of, is_equipment, equipment_area, equipment_of, is_unit_symbol,
     unit_quantity, is_manipulated, is_controlled, is_sensor_kind, is_framework, group_by_area,
     symbolize_keys, stringify_keys, validate_vocabulary
+export ACID_GRADES, ACID_GRADE_P2O5, ACID_SPECIFICATIONS, ACID_SPEC_TAGS, is_acid_grade,
+    acid_grade_of, ACID_POWER_KWH_PER_T_SULPHUR, ACID_POWER_KWH_PER_M3_FEED, acid_quality,
+    acid_evaluation
 
 # units, stoichiometry and composition
 export MASS_TO_KG, ENERGY_TO_GJ, POWER_TO_MW, PRESSURE_TO_BAR, LENGTH_TO_MM, VOLUME_TO_M3,
@@ -200,16 +203,18 @@ export AREA_COLOURS, STATUS_COLOURS, SEVERITY_COLOURS, FIGURE_SIZE, figure_theme
     data_uri, figure_entry, fig_production, fig_recovery_cascade, fig_energy_split,
     fig_cost_split, fig_trend, fig_envelope, fig_step_response, fig_loop, fig_loop_inputs,
     fig_mpc_comparison, fig_parity, fig_image, spectrum_curve, fig_spectrum, fig_alignment,
-    fig_quality, fig_targets, fig_blend, figure_set
+    fig_quality, fig_targets, fig_blend, fig_acid_balance, fig_acid_quality, fig_acid_cost,
+    figure_set
 export html_escape, fmt_number, fmt_unit, fmt_symbol, badge, Section, section, PrintableHTML,
     table_html, cell_html, cards_html, figure_html, is_figure, figure_or_nothing, callout_html,
     list_html, paragraph_html, PRINTOUT_CSS, document_html, write_printout, report_meta,
     report_headline, kv_table, executive_section, plant_layout_section, ore_section,
-    reaction_section, product_section, target_section, twin_section, dynamic_section,
+    reaction_section, acid_section, product_section, target_section, twin_section, dynamic_section,
     control_section, optimization_section, sensor_section, diagnostics_section,
     compliance_section, quality_section, method_section, SECTION_GROUPS, report_sections,
     report_html, section_html, preview, preview_executive, preview_flowsheet, preview_ore,
-    preview_reaction, preview_product, preview_targets, preview_twin, preview_dynamic,
+    preview_reaction, preview_acid, preview_product, preview_targets, preview_twin,
+    preview_dynamic,
     preview_control, preview_optimization, preview_sensors, preview_diagnostics,
     preview_compliance, preview_quality, preview_method, print_report_pdf
 export find_chrome, pdf_available, html_to_pdf, print_html_to_pdf, pdf_capability

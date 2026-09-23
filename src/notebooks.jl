@@ -160,7 +160,8 @@ function expression_bindings(expr, acc::Set{Symbol} = Set{Symbol}())
             a isa Expr && a.head === :. && (a.args[1] isa Symbol && push!(acc, a.args[1]))
         end
         return acc
-    elseif expr.head === :block || expr.head === :toplevel
+    elseif expr.head === :block || expr.head === :toplevel || expr.head === :filter ||
+           expr.head === :flatten || expr.head === :generator
         for a in expr.args
             expression_bindings(a, acc)
         end
@@ -224,7 +225,9 @@ function expression_references(expr, acc::Set{Symbol} = Set{Symbol}())
             expression_bindings(clause, local_names)
         end
         inner = Set{Symbol}()
-        expression_references(expr.args[1], inner)
+        for a in expr.args
+            expression_references(a, inner)
+        end
         union!(acc, setdiff(inner, local_names))
         return acc
     end

@@ -1,0 +1,9 @@
+metric,value,unit,basis,note
+:rock,3.2195,:t_ph,:per_p2o5_sold,t of rock per t P2O5 sold as acid, allocated by the acid share
+:sulphuric_acid,2.8905,:t_ph,:per_p2o5_sold,t of H2SO4 per t P2O5 sold as acid
+:sulphur,0.9446,:t_ph,:per_p2o5_sold,t of sulphur burnt per t P2O5 sold as acid
+:steam,0.4115,:t_ph,:per_p2o5_concentrated,t of steam per t P2O5 the evaporators concentrate, both products included
+:electricity,60.8222,:kwh_per_t,:per_p2o5_concentrated,kWh per t P2O5 concentrated: blower of the acid plant and evaporator set
+:water,2.8178,:m3_ph,:per_p2o5_concentrated,m3 of evaporator feed per t P2O5 concentrated
+:thermal_energy,1.1394,:gj_per_t,:per_p2o5_concentrated,GJ of steam per t P2O5 concentrated
+:gypsum,4.7611,:t_ph,:per_p2o5_sold,t of phosphogypsum per t P2O5

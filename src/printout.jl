@@ -517,6 +517,102 @@ function product_section(b::Dict{Symbol,Any})
     return section(:product_and_cost, "Granulation, product quality, energy, cost and carbon", body)
 end
 
+"""
+    acid_section(bundle) -> Section
+
+The acid route of the report: what the phosphoric acid plant produced, the balance of
+the P2O5 from the attack to the storage tank, the specification of the merchant grade,
+what the plant had to spend to make it and what a tonne of P2O5 costs as acid.
+"""
+function acid_section(b::Dict{Symbol,Any})
+    kpi = b[:kpi]
+    haskey(kpi, :acid) || return nothing
+    a = kpi[:acid]
+    s, figs = a[:summary], b[:figures]
+    body = paragraph_html(string(
+        "The acid plant produced ", fmt_number(s[:merchant_kt], digits = 1),
+        " kt of merchant acid -- ", fmt_number(s[:merchant_p2o5_kt], digits = 1),
+        " kt P2O5, ", fmt_number(s[:merchant_h3po4_kt], digits = 1),
+        " kt H3PO4 on the 100 % basis -- at ", fmt_number(s[:grade_p2o5], digits = 2),
+        " % P2O5, which is the ", code_string(s[:grade]), " grade. The evaporators removed ",
+        fmt_number(s[:water_evaporated_t] / 1000.0, digits = 1), " thousand t of water with ",
+        fmt_number(s[:steam_per_p2o5], digits = 3), " t of steam per t of P2O5 concentrated, an ",
+        "economy of ", fmt_number(s[:economy], digits = 2), " t of water per t of steam. ",
+        "The acid leaves the plant ", badge(s[:quality_status]),
+        " against the specification of the traded grade."))
+    body *= kv_table([
+        "Merchant acid" => string(fmt_number(s[:merchant_kt], digits = 1), " kt (",
+            fmt_number(s[:merchant_p2o5_kt], digits = 1), " kt P2O5, ",
+            fmt_number(s[:merchant_h3po4_kt], digits = 1), " kt as H3PO4)"),
+        "Grade" => string(fmt_number(s[:grade_p2o5], digits = 2), " % P2O5 (",
+            fmt_number(s[:grade_h3po4], digits = 2), " % H3PO4) -- ", code_string(s[:grade])),
+        "P2O5 of the attack" => string("the filters receive ",
+            fmt_number(s[:share_of_filters_pct], digits = 1),
+            " % of it as merchant acid, the rest goes to the granulation line"),
+        "Yield" => string("the filtration and the attack keep ",
+            fmt_number(s[:filtration_yield_pct], digits = 2),
+            " % of the P2O5 fed; the evaporation closes at ",
+            fmt_number(s[:concentration_yield_pct], digits = 2), " %"),
+        "Concentration" => string(fmt_number(s[:water_per_p2o5], digits = 2),
+            " m3 of feed and ", fmt_number(s[:thermal_gj_per_p2o5], digits = 2),
+            " GJ of steam per t P2O5, ", fmt_number(s[:electricity_per_p2o5], digits = 0),
+            " kWh of blower and pumps"),
+        "Cost" => string(fmt_number(s[:cost_per_t_p2o5], digits = 0), " ",
+            code_string(a[:cost][:currency]), " per t P2O5 as acid (",
+            fmt_number(s[:cost_per_t_acid], digits = 1), " per t of acid) against a price of ",
+            fmt_number(s[:revenue_per_t_p2o5], digits = 0), " and a margin of ",
+            fmt_number(s[:margin_per_t_p2o5], digits = 0), " per t P2O5"),
+    ]; title = "The merchant acid of the campaign")
+    body *= table_html(a[:quality][:rows];
+        columns = [:spec, :tag, :value, :limit, :unit, :comparator, :margin_pct, :status],
+        headers = Dict{Symbol,String}(:spec => "Specification", :tag => "Instrument",
+            :value => "Campaign", :limit => "Limit", :unit => "Unit", :comparator => "Direction",
+            :margin_pct => "Margin %", :status => "Status"),
+        formats = Dict{Symbol,Function}(:spec => v -> to_string(v), :tag => v -> code_string(v),
+            :unit => v -> code_string(v), :comparator => v -> code_string(v),
+            :status => v -> badge(v)),
+        title = "The merchant acid against the specification of the traded grade")
+    body *= table_html(a[:balance];
+        columns = [:destination, :p2o5_t, :share_pct, :note],
+        headers = Dict{Symbol,String}(:destination => "Destination", :p2o5_t => "t P2O5",
+            :share_pct => "Share %", :note => "Note"),
+        formats = Dict{Symbol,Function}(:destination => v -> to_string(v)),
+        title = "Where the P2O5 of the attack goes")
+    body *= table_html(a[:steps];
+        columns = [:step, :in_t, :out_t, :loss_t, :yield_pct, :note],
+        headers = Dict{Symbol,String}(:step => "Step", :in_t => "In (t P2O5)",
+            :out_t => "Out (t P2O5)", :loss_t => "Loss (t P2O5)", :yield_pct => "Yield %",
+            :note => "Note"),
+        formats = Dict{Symbol,Function}(:step => v -> to_string(v)),
+        title = "The steps of the acid route")
+    body *= table_html(a[:consumption];
+        columns = [:metric, :value, :unit, :basis, :note],
+        headers = Dict{Symbol,String}(:metric => "Consumption", :value => "Value", :unit => "Unit",
+            :basis => "Basis", :note => "Note"),
+        formats = Dict{Symbol,Function}(:metric => v -> to_string(v), :unit => v -> code_string(v),
+            :basis => v -> code_string(v)),
+        title = "What a tonne of P2O5 costs in rock, acid, steam and water")
+    body *= table_html(a[:targets] |> values |> collect;
+        columns = [:metric, :actual, :target, :unit, :comparator, :margin_pct, :status],
+        headers = Dict{Symbol,String}(:metric => "Metric", :actual => "Campaign",
+            :target => "Target", :unit => "Unit", :comparator => "Direction",
+            :margin_pct => "Margin %", :status => "Status"),
+        formats = Dict{Symbol,Function}(:metric => v -> code_string(v),
+            :unit => v -> code_string(v), :comparator => v -> code_string(v),
+            :status => v -> badge(v)),
+        title = "The targets of the acid route")
+    body *= figure_or_nothing(figs, :acid_balance)
+    body *= figure_or_nothing(figs, :acid_quality)
+    body *= figure_or_nothing(figs, :acid_cost)
+    body *= callout_html(s[:status] === :compliant ? :info : :warning, string(
+        "Acid route: the plant kept ", fmt_number(s[:filtration_yield_pct], digits = 2),
+        " % of the P2O5 at the filters, sold ", fmt_number(s[:merchant_kt], digits = 1),
+        " kt of acid at ", fmt_number(s[:grade_p2o5], digits = 2), " % P2O5 for ",
+        fmt_number(s[:revenue_per_t_p2o5], digits = 0), " per t P2O5, and spent ",
+        fmt_number(s[:cost_per_t_p2o5], digits = 0), "."))
+    return section(:phosphoric_acid, "Phosphoric acid: balance, specification and cost", body)
+end
+
 """The performance register: every metric against its target."""
 function target_section(b::Dict{Symbol,Any})
     kpi = b[:kpi]
@@ -940,6 +1036,7 @@ const SECTION_GROUPS = Dict{Symbol,Vector{Symbol}}(
     :flowsheet => [:flowsheet],
     :ore => [:ore_and_flotation],
     :reaction => [:reaction_train],
+    :acid => [:phosphoric_acid],
     :product => [:product_and_cost],
     :targets => [:performance_register],
     :twin => [:digital_twin, :dynamic_twin],
@@ -963,7 +1060,7 @@ a report never claims more than it has.
 function report_sections(b::Dict{Symbol,Any}; ids::Union{Nothing,Vector{Symbol}} = nothing)
     built = [
         executive_section(b), plant_layout_section(b), ore_section(b), reaction_section(b),
-        product_section(b), target_section(b), twin_section(b), dynamic_section(b),
+        acid_section(b), product_section(b), target_section(b), twin_section(b), dynamic_section(b),
         control_section(b), optimization_section(b), sensor_section(b), diagnostics_section(b),
         compliance_section(b), quality_section(b), method_section(b),
     ]
@@ -1011,6 +1108,8 @@ preview_flowsheet(b::Dict{Symbol,Any}) = preview(b, :flowsheet)
 preview_ore(b::Dict{Symbol,Any}) = preview(b, :ore_and_flotation)
 """Preview of the reaction train."""
 preview_reaction(b::Dict{Symbol,Any}) = preview(b, :reaction_train)
+"""Preview of the phosphoric acid route: the balance, the specification and the cost."""
+preview_acid(b::Dict{Symbol,Any}) = preview(b, :phosphoric_acid)
 """Preview of the product, energy, cost and carbon."""
 preview_product(b::Dict{Symbol,Any}) = preview(b, :product_and_cost)
 """Preview of the performance register."""

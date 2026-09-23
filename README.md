@@ -24,6 +24,7 @@ typo shows up as an error instead of a silently missing number.
 | Registered design, flowsheet and instrument register | `default_design`, `default_flowsheet`, `SIGNAL_TAGS` |
 | Seeded campaign with deviations injected on purpose | `generate_campaign`, `Deviation`, `export_campaign` |
 | Performance bundle: ore, acid, product, energy, cost, carbon | `site_kpis`, `target_table`, `area_cards` |
+| **Phosphoric acid evaluation**: P2O5 balance, yields, grade, specification, cost | `acid_evaluation`, `acid_quality`, `ACID_SPECIFICATIONS`, `acid_grade_of` |
 | Fault detection and diagnostics, scored against the truth | `detect_faults`, `fault_detection_report`, `verify_detection` |
 | Compliance register of nine frameworks and the evidence | `compliance_report`, `corrective_actions` |
 | **Steady-state digital twin** (ModelingToolkit) | `steady_state_system`, `solve_steady_state`, `sensitivity_table`, `steady_state_envelope` |
@@ -63,6 +64,8 @@ comp      = compliance_report(kpi, fdd)            # the clause register
 kpi[:product][:p2o5_recovery_pct]                  # plant recovery, mine to bag
 kpi[:attack][:acid_per_p2o5]                       # t H2SO4 per t P2O5
 kpi[:evaporation][:steam_per_p2o5]                 # t steam per t P2O5
+kpi[:acid][:summary][:cost_per_t_p2o5]             # cost of a tonne of P2O5 as acid
+kpi[:acid][:quality][:status]                      # the acid against its specification
 kpi[:carbon][:intensity_kg_per_p2o5]               # kgCO2e per t P2O5
 
 twin   = solve_steady_state(design)                # the operating point of the twin
@@ -129,7 +132,7 @@ sourcing plan (MILP with HiGHS, because a body is bought by the shipload).
 
 | Modality | What it infers | How |
 |---|---|---|
-| `:process` | acid strengths, water-soluble loss, grind, mill power, product nitrogen, filter rate, concentrate grade | linear model of the instruments that report every hour |
+| `:process` | acid strengths, water-soluble loss, grind, mill power, product nitrogen, filter rate, concentrate grade | linear model of the instruments that report every hour -- the grade of the merchant acid from the boiling point, the vacuum and the steam |
 | `:visual` | grade of the concentrate, grind of the mill discharge | statistics, spectral bands, texture and bubble morphology of a froth and a belt image |
 | `:acoustic` | load of the mill, cavitation of the pump | band powers, crest factor, kurtosis and cavitation index of the sound of the machine |
 
@@ -144,7 +147,8 @@ cannot answer (`:degraded`) instead of guessing. `sensor_health` watches the dri
 
 * `data/` -- the daily readings, the signal register, the deviations, the KPI, the
   findings, the compliance register, the targets, the twin solution, the optimisation
-  results, the closed-loop trajectory and the WAV files of the acoustic sensors;
+  results, the closed-loop trajectory, the acid balance with its specification and its
+  consumption, and the WAV files of the acoustic sensors;
 * `reports/html/` -- the printouts of the report and of its sections;
 * `reports/pdf/` -- the same printed to PDF by a headless Chromium, the engine of the
   browser "Print to PDF";
@@ -182,6 +186,13 @@ reports/pdf/            generated PDFs (report, sections, notebooks)
   a commissioning would absorb.
 * **Cost and carbon** use the register of `process.jl` and the factors of the GHG Protocol
   (0.371 kgCO2e/kWh for the grid, 50.29 kgCO2e/GJ for the natural gas).
+* **The acid is a co-product, and its cost says so.** The merchant acid shares the attack
+  and the filtration with the fertiliser route: the rock, the reagents, the sulphur and the
+  gypsum disposal are charged by the share of the P2O5 that leaves as merchant acid
+  (`allocation_pct`), while the steam, the power and the water of the evaporator house are
+  borne by the acid in full, because the evaporators concentrate the acid of both products.
+  Every row of the consumption table prints its basis (`:per_p2o5_sold` or
+  `:per_p2o5_concentrated`), so the two denominators are never mixed.
 * **Reproducibility**: everything is a function of the seed printed on the cover page of
   every report.
 
@@ -212,7 +223,9 @@ julia --project=. -e 'using Pkg; Pkg.test()'
 The suite covers the vocabulary and the unit conversions, the stoichiometry and the
 composition arithmetic, the historian containers and the aggregation, the registered design
 and the flowsheet (including the two-product balance of flotation closing), the campaign
-(determinism, defects, every section step), the KPI bundle, the diagnostics (including the
+(determinism, defects, every section step), the KPI bundle, the acid route (the P2O5
+balance closing, the yields, the specification rows and their instruments, the consumption
+basis, the cost and the grade), the diagnostics (including the
 detection rate against the injected deviations), the compliance register, the steady-state
 twin (solution, residuals, sensitivities, envelope), the dynamic twin, the linearisation,
 the reconciliation and the state estimation, the three optimisation models, the MPC (model,

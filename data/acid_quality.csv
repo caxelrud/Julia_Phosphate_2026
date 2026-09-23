@@ -1,0 +1,7 @@
+spec,tag,value,limit,unit,comparator,margin_pct,status,basis
+:colour,:ACID_COLOUR,2.86,4.0,:count,:le,28.5006,:compliant,Gardner colour: the organics of the ore and the evaporation temperature
+:f,:ACID_F,0.3533,0.5,:wt_pct,:le,29.3466,:compliant,fluorine of the apatite that stayed in solution
+:fe_al,:ACID_FE_AL,0.1918,1.0,:wt_pct,:le,80.817,:compliant,iron and aluminium of the ore, which sequester P2O5
+:p2o5,:STRONG_ACID_P2O5,55.8524,52.0,:wt_pct,:ge,7.4085,:compliant,P2O5 of the merchant acid; 52 % is the traded grade
+:so4,:ACID_SO4,1.1642,1.5,:wt_pct,:le,22.3877,:compliant,sulphate carried over from the attack: it corrodes the storage and the DAP
+:solids,:ACID_SOLIDS,0.2943,0.5,:wt_pct,:le,41.1348,:compliant,gypsum fines and unclarified sludge the filters let through

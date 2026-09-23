@@ -137,6 +137,7 @@ Base.@kwdef struct PlantDesign
     ## acid plant and evaporation
     evaporator_economy::Float64 = 3.6
     evaporator_steam_tph::Float64 = 96.0
+    acid_merchant_split::Float64 = 0.24
     acid_plant_capacity_tpd::Float64 = 3600.0
     acid_plant_conversion::Float64 = 0.997
     waste_heat_steam_tph::Float64 = 46.0
@@ -575,6 +576,13 @@ const SIGNAL_SPECS = (
     (:EVAP_TEMP, :deg_c, :evaporation, :concentrated_acid, :level, 92.0, 80.0, 105.0, :evaporator_temperature),
     (:STRONG_ACID_P2O5, :wt_pct, :evaporation, :concentrated_acid, :level, 52.4, 48.0, 55.0, :acid_strength),
     (:MERCHANT_ACID_FLOW, :t_ph, :evaporation, :concentrated_acid, :flow, 118.0, 30.0, 170.0, :merchant_acid_rate),
+
+    ## the quality of the acid itself: what the specification of the merchant grade watches
+    (:ACID_SO4, :wt_pct, :evaporation, :concentrated_acid, :level, 0.95, 0.20, 2.40, :acid_sulfate),
+    (:ACID_F, :wt_pct, :evaporation, :concentrated_acid, :level, 0.32, 0.05, 0.90, :acid_fluoride),
+    (:ACID_SOLIDS, :wt_pct, :evaporation, :concentrated_acid, :level, 0.24, 0.02, 0.80, :acid_solids),
+    (:ACID_FE_AL, :wt_pct, :evaporation, :concentrated_acid, :level, 0.68, 0.15, 1.80, :acid_iron_aluminium),
+    (:ACID_COLOUR, :count, :evaporation, :concentrated_acid, :level, 2.60, 0.50, 6.00, :acid_colour),
 
     (:EVAP_VACUUM, :mmwc, :evaporation, :evaporator_condensate, :level, 480.0, 300.0, 620.0, :evaporator_vacuum),
     # granulation and finishing

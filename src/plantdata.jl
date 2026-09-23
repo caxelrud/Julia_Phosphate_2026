@@ -253,6 +253,8 @@ function initial_plant_state(d::PlantDesign, assay::Composition)
         :evap_feed_flow => 320.0, :evap_density => 1.52, :evap_temp => 92.0,
         :strong_acid_p2o5 => 100.0 * P2O5_MERCHANT_ACID, :evap_vacuum => 480.0,
         :merchant_acid_flow => 0.0,
+        :acid_so4 => 0.95, :acid_f => 0.32, :acid_solids => 0.24,
+        :acid_fe_al => 0.68, :acid_colour => 2.60,
 
         # granulation and finishing
         :ammonia_flow => AMMONIA_PER_P2O5_DAP * design_p2o5_tph(d), :melt_density => 1.62,
@@ -557,14 +559,34 @@ function step_evaporation!(st::Dict{Symbol,Float64}, ctx::CampaignContext, i::In
                                   0.12 * randn(rng), 45.0, 56.0)
     st[:evap_density] = clamp(acid_density(st[:strong_acid_p2o5], st[:evap_temp]) +
                               0.004 * randn(rng), 1.30, 1.66)
-    st[:evap_temp] = clamp(88.0 + 0.6 * (st[:steam_flow] / d.evaporator_steam_tph - 1.0) * 10.0 -
+    ## the boiling point rises with the strength of the acid: this is the correlation the
+    ## evaporator house reads the grade with, and what the acid-grade sensor infers from
+    st[:evap_temp] = clamp(88.0 + 0.55 * (st[:strong_acid_p2o5] - 52.4) +
+                           0.6 * (st[:steam_flow] / d.evaporator_steam_tph - 1.0) * 10.0 -
                            0.02 * (480.0 - st[:evap_vacuum]) + 0.4 * randn(rng), 76.0, 112.0)
     st[:acid_produced] += duty.product * dt
-    st[:merchant_acid_flow] = 0.24 * duty.product
+    st[:merchant_acid_flow] = d.acid_merchant_split * duty.product
     st[:steam_consumed] += st[:steam_flow] * dt
+    ## the quality of the acid: the specification of the merchant grade watches the
+    ## sulphate carried over from the attack, the fluorine that stayed in solution, the
+    ## fines the filters let through, the iron and aluminium of the ore, and the colour
+    f_ratio = 100.0 * ctx.assay[:f] / max(ctx.assay[:p2o5], 1.0e-6)
+    f_reference = 100.0 * ore_body(d.ore_body)[:f] / max(ore_body(d.ore_body)[:p2o5], 1.0e-6)
+    st[:acid_so4] = clamp(0.95 + 0.34 * (st[:free_so4] - 2.6) +
+                          0.05 * (st[:strong_acid_p2o5] - 52.4) + 0.02 * randn(rng), 0.15, 2.60)
+    st[:acid_f] = clamp(0.32 * (f_ratio / max(f_reference, 1.0e-6)) -
+                        0.006 * (st[:evap_temp] - 92.0) + 0.012 * randn(rng), 0.03, 0.95)
+    st[:acid_solids] = clamp(0.24 + 0.16 * (st[:gypsum_free_p2o5] - 0.65) / 0.65 +
+                             0.030 * (st[:filter_rate] - 5.4) + 0.010 * randn(rng), 0.02, 0.85)
+    st[:acid_fe_al] = clamp(0.19 * 100.0 * (ctx.assay[:fe2o3] + ctx.assay[:al2o3]) +
+                            0.02 * randn(rng), 0.10, 1.80)
+    st[:acid_colour] = clamp(2.10 + 0.055 * (st[:evap_temp] - 92.0) +
+                             0.30 * (st[:strong_acid_p2o5] - 52.4) + 0.06 * randn(rng), 0.5, 6.0)
 
-    return (; acid = duty.product, steam = st[:steam_flow], merchant = 0.24 * duty.product,
-        recycle = 0.76 * duty.product, strength = st[:strong_acid_p2o5])
+    return (; acid = duty.product, steam = st[:steam_flow],
+        merchant = d.acid_merchant_split * duty.product,
+        recycle = (1.0 - d.acid_merchant_split) * duty.product,
+        strength = st[:strong_acid_p2o5])
 end
 
 """

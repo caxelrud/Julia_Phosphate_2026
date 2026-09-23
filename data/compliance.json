@@ -28,9 +28,9 @@
                         "target": 5,
                         "evidence": "kpi_report",
                         "framework_title": "US EPA 40 CFR 63 subpart AA",
-                        "value": 2.709607902877662,
+                        "value": 2.717252142376749,
                         "framework": "us_epa_40cfr63",
-                        "margin_pct": 45.80784194244676
+                        "margin_pct": 45.65495715246502
                     },
                     {
                         "title": "Scrubber operating limit",
@@ -43,9 +43,9 @@
                         "target": 5.6,
                         "evidence": "kpi_report",
                         "framework_title": "US EPA 40 CFR 63 subpart AA",
-                        "value": 6.401000831171673,
+                        "value": 6.396032849648134,
                         "framework": "us_epa_40cfr63",
-                        "margin_pct": 14.303586270922734
+                        "margin_pct": 14.214872315145259
                     },
                     {
                         "title": "Record keeping",
@@ -58,9 +58,9 @@
                         "target": 98,
                         "evidence": "quality_register",
                         "framework_title": "US EPA 40 CFR 63 subpart AA",
-                        "value": 99.81949200913239,
+                        "value": 99.80957580570445,
                         "framework": "us_epa_40cfr63",
-                        "margin_pct": 1.856624499114683
+                        "margin_pct": 1.8465059241882193
                     }
                 ],
                 "at_risk": 0,
@@ -69,7 +69,7 @@
             },
             "iso_9001": {
                 "compliance_pct": 100,
-                "compliant": 4,
+                "compliant": 8,
                 "noncompliant": 0,
                 "rows": [
                     {
@@ -83,9 +83,9 @@
                         "target": 17.4,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 9001:2015 quality management",
-                        "value": 18.140946841076513,
+                        "value": 18.14239313739263,
                         "framework": "iso_9001",
-                        "margin_pct": 4.2583151786006574
+                        "margin_pct": 4.266627226394439
                     },
                     {
                         "title": "Product moisture",
@@ -98,9 +98,9 @@
                         "target": 2,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 9001:2015 quality management",
-                        "value": 1.7505109309302112,
+                        "value": 1.7522987109054644,
                         "framework": "iso_9001",
-                        "margin_pct": 12.474453453489442
+                        "margin_pct": 12.38506445472678
                     },
                     {
                         "title": "Product solubility",
@@ -113,9 +113,9 @@
                         "target": 85,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 9001:2015 quality management",
-                        "value": 88.49703578229271,
+                        "value": 88.505763552991,
                         "framework": "iso_9001",
-                        "margin_pct": 4.114159743873779
+                        "margin_pct": 4.124427709401175
                     },
                     {
                         "title": "Control of production",
@@ -128,18 +128,78 @@
                         "target": 50.5,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 9001:2015 quality management",
-                        "value": 55.852585514148224,
+                        "value": 55.85244380353741,
                         "framework": "iso_9001",
-                        "margin_pct": 10.599179235937077
+                        "margin_pct": 10.598898620866162
+                    },
+                    {
+                        "title": "Merchant acid specification",
+                        "comparator": "le",
+                        "metric": "acid_so4",
+                        "basis": "the sulphate of the merchant acid is the first limit of the traded grade",
+                        "clause": "acid_specification",
+                        "status": "compliant",
+                        "unit": "wt_pct",
+                        "target": 1.5,
+                        "evidence": "kpi_report",
+                        "framework_title": "ISO 9001:2015 quality management",
+                        "value": 1.1641849234992954,
+                        "framework": "iso_9001",
+                        "margin_pct": 22.38767176671364
+                    },
+                    {
+                        "title": "Fluorine of the merchant acid",
+                        "comparator": "le",
+                        "metric": "acid_f",
+                        "basis": "fluorine above the specification corrodes the storage and the customer's plant",
+                        "clause": "acid_fluorine",
+                        "status": "compliant",
+                        "unit": "wt_pct",
+                        "target": 0.5,
+                        "evidence": "kpi_report",
+                        "framework_title": "ISO 9001:2015 quality management",
+                        "value": 0.35326721974317093,
+                        "framework": "iso_9001",
+                        "margin_pct": 29.346556051365813
+                    },
+                    {
+                        "title": "Solids of the merchant acid",
+                        "comparator": "le",
+                        "metric": "acid_solids",
+                        "basis": "the fines the filters let through settle in the storage tanks",
+                        "clause": "acid_solids",
+                        "status": "compliant",
+                        "unit": "wt_pct",
+                        "target": 0.5,
+                        "evidence": "kpi_report",
+                        "framework_title": "ISO 9001:2015 quality management",
+                        "value": 0.29432599185109604,
+                        "framework": "iso_9001",
+                        "margin_pct": 41.134801629780796
+                    },
+                    {
+                        "title": "Yield of the acid route",
+                        "comparator": "ge",
+                        "metric": "acid_p2o5_yield",
+                        "basis": "the P2O5 that reaches the filters over the P2O5 fed to the attack",
+                        "clause": "acid_yield",
+                        "status": "compliant",
+                        "unit": "pct",
+                        "target": 96.5,
+                        "evidence": "kpi_report",
+                        "framework_title": "ISO 9001:2015 quality management",
+                        "value": 97.68139539950859,
+                        "framework": "iso_9001",
+                        "margin_pct": 1.2242439373145992
                     }
                 ],
                 "at_risk": 0,
                 "title": "ISO 9001:2015 quality management",
-                "clauses": 4
+                "clauses": 8
             },
             "ifa_bat": {
-                "compliance_pct": 60,
-                "compliant": 3,
+                "compliance_pct": 66.66666666666667,
+                "compliant": 4,
                 "noncompliant": 2,
                 "rows": [
                     {
@@ -153,9 +213,9 @@
                         "target": 94,
                         "evidence": "kpi_report",
                         "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                        "value": 83.82511295472499,
+                        "value": 83.6510821846091,
                         "framework": "ifa_bat",
-                        "margin_pct": -10.824347920505334
+                        "margin_pct": -11.0094870376499
                     },
                     {
                         "title": "Specific acid demand",
@@ -168,9 +228,24 @@
                         "target": 2.85,
                         "evidence": "kpi_report",
                         "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                        "value": 2.829330791854544,
+                        "value": 2.823433949113338,
                         "framework": "ifa_bat",
-                        "margin_pct": 0.7252353735247807
+                        "margin_pct": 0.932142136374116
+                    },
+                    {
+                        "title": "Steam of the acid concentration",
+                        "comparator": "le",
+                        "metric": "acid_steam",
+                        "basis": "steam per tonne of P2O5 concentrated: the largest energy item of the acid route",
+                        "clause": "acid_steam",
+                        "status": "compliant",
+                        "unit": "t_ph",
+                        "target": 0.62,
+                        "evidence": "kpi_report",
+                        "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
+                        "value": 0.4114923425935953,
+                        "framework": "ifa_bat",
+                        "margin_pct": 33.63026732361366
                     },
                     {
                         "title": "Water-soluble loss",
@@ -183,9 +258,9 @@
                         "target": 2,
                         "evidence": "kpi_report",
                         "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                        "value": 2.33549971579914,
+                        "value": 2.3186046004914065,
                         "framework": "ifa_bat",
-                        "margin_pct": -16.774985789956997
+                        "margin_pct": -15.930230024570324
                     },
                     {
                         "title": "Fluorine recovery",
@@ -213,14 +288,14 @@
                         "target": 170,
                         "evidence": "kpi_report",
                         "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                        "value": 150.5547898488827,
+                        "value": 150.60178958821658,
                         "framework": "ifa_bat",
-                        "margin_pct": 11.438358912421938
+                        "margin_pct": 11.410712006931426
                     }
                 ],
                 "at_risk": 0,
                 "title": "IFA/EFMA BAT for phosphate fertilisers",
-                "clauses": 5
+                "clauses": 6
             },
             "iso_46001": {
                 "compliance_pct": 100,
@@ -238,9 +313,9 @@
                         "target": 8,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 46001:2019 water efficiency",
-                        "value": 3.3949337159164967,
+                        "value": 3.3806042948258557,
                         "framework": "iso_46001",
-                        "margin_pct": 57.56332855104379
+                        "margin_pct": 57.7424463146768
                     },
                     {
                         "title": "Water reuse",
@@ -253,9 +328,9 @@
                         "target": 65,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 46001:2019 water efficiency",
-                        "value": 70.34063981307024,
+                        "value": 70.3240689832943,
                         "framework": "iso_46001",
-                        "margin_pct": 8.216368943184985
+                        "margin_pct": 8.190875358914301
                     },
                     {
                         "title": "Effluent quality",
@@ -268,9 +343,9 @@
                         "target": 8.5,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 46001:2019 water efficiency",
-                        "value": 7.399313350570335,
+                        "value": 7.399771304448648,
                         "framework": "iso_46001",
-                        "margin_pct": 12.949254699172531
+                        "margin_pct": 12.943867006486494
                     }
                 ],
                 "at_risk": 0,
@@ -293,9 +368,9 @@
                         "target": 1,
                         "evidence": "kpi_report",
                         "framework_title": "Phosphogypsum stack management code",
-                        "value": 0.49978147363553443,
+                        "value": 0.49854872878834094,
                         "framework": "phosphogypsum_code",
-                        "margin_pct": 50.02185263644656
+                        "margin_pct": 50.1451271211659
                     },
                     {
                         "title": "Water return to the plant",
@@ -308,9 +383,9 @@
                         "target": 65,
                         "evidence": "kpi_report",
                         "framework_title": "Phosphogypsum stack management code",
-                        "value": 70.34063981307024,
+                        "value": 70.3240689832943,
                         "framework": "phosphogypsum_code",
-                        "margin_pct": 8.216368943184985
+                        "margin_pct": 8.190875358914301
                     },
                     {
                         "title": "Dust control on the stack",
@@ -323,9 +398,9 @@
                         "target": 30,
                         "evidence": "kpi_report",
                         "framework_title": "Phosphogypsum stack management code",
-                        "value": 21.78400165217183,
+                        "value": 21.79517898531,
                         "framework": "phosphogypsum_code",
-                        "margin_pct": 27.386661159427227
+                        "margin_pct": 27.349403382300004
                     }
                 ],
                 "at_risk": 0,
@@ -348,9 +423,9 @@
                         "target": 48,
                         "evidence": "carbon_inventory",
                         "framework_title": "GHG Protocol corporate standard",
-                        "value": 36338.02137668385,
+                        "value": 36379.54479519054,
                         "framework": "ghg_protocol",
-                        "margin_pct": -75604.2112014247
+                        "margin_pct": -75690.71832331362
                     },
                     {
                         "title": "Scope 2 quantification",
@@ -363,9 +438,9 @@
                         "target": 240,
                         "evidence": "carbon_inventory",
                         "framework_title": "GHG Protocol corporate standard",
-                        "value": 21927.799564865552,
+                        "value": 21954.67389995146,
                         "framework": "ghg_protocol",
-                        "margin_pct": -9036.583152027313
+                        "margin_pct": -9047.780791646443
                     },
                     {
                         "title": "Emissions intensity",
@@ -378,9 +453,9 @@
                         "target": 145,
                         "evidence": "carbon_inventory",
                         "framework_title": "GHG Protocol corporate standard",
-                        "value": 56.106953745474236,
+                        "value": 55.98016094551436,
                         "framework": "ghg_protocol",
-                        "margin_pct": 61.305549141052246
+                        "margin_pct": 61.3929924513694
                     },
                     {
                         "title": "Emission factor register",
@@ -418,9 +493,9 @@
                         "target": 12.5,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 2.015020778751072,
+                        "value": 2.0070074736212122,
                         "framework": "iso_50001",
-                        "margin_pct": 83.87983376999142
+                        "margin_pct": 83.94394021103031
                     },
                     {
                         "title": "Energy performance indicator",
@@ -433,9 +508,9 @@
                         "target": 100,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 16.120166230008575,
+                        "value": 16.056059788969698,
                         "framework": "iso_50001",
-                        "margin_pct": 83.87983376999142
+                        "margin_pct": 83.94394021103031
                     },
                     {
                         "title": "Baseline data quality",
@@ -448,9 +523,9 @@
                         "target": 98,
                         "evidence": "quality_register",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 99.81949200913239,
+                        "value": 99.80957580570445,
                         "framework": "iso_50001",
-                        "margin_pct": 1.856624499114683
+                        "margin_pct": 1.8465059241882193
                     },
                     {
                         "title": "Objectives and targets",
@@ -463,9 +538,9 @@
                         "target": 70,
                         "evidence": "target_register",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 85,
+                        "value": 89.28571428571429,
                         "framework": "iso_50001",
-                        "margin_pct": 21.428571428571427
+                        "margin_pct": 27.55102040816327
                     },
                     {
                         "title": "Operational control",
@@ -478,7 +553,7 @@
                         "target": 0,
                         "evidence": "diagnostics_register",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 29,
+                        "value": 30,
                         "framework": "iso_50001",
                         "margin_pct": null
                     },
@@ -493,9 +568,9 @@
                         "target": 40,
                         "evidence": "instrument_register",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 64,
+                        "value": 69,
                         "framework": "iso_50001",
-                        "margin_pct": 60
+                        "margin_pct": 72.5
                     }
                 ],
                 "at_risk": 0,
@@ -518,9 +593,9 @@
                         "target": 5,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 2.709607902877662,
+                        "value": 2.717252142376749,
                         "framework": "iso_14001",
-                        "margin_pct": 45.80784194244676
+                        "margin_pct": 45.65495715246502
                     },
                     {
                         "title": "Emissions monitoring",
@@ -533,9 +608,9 @@
                         "target": 30,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 21.78400165217183,
+                        "value": 21.79517898531,
                         "framework": "iso_14001",
-                        "margin_pct": 27.386661159427227
+                        "margin_pct": 27.349403382300004
                     },
                     {
                         "title": "Waste management",
@@ -548,9 +623,9 @@
                         "target": 1,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 0.49978147363553443,
+                        "value": 0.49854872878834094,
                         "framework": "iso_14001",
-                        "margin_pct": 50.02185263644656
+                        "margin_pct": 50.1451271211659
                     },
                     {
                         "title": "Water balance and discharge",
@@ -563,9 +638,9 @@
                         "target": 8,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 3.3949337159164967,
+                        "value": 3.3806042948258557,
                         "framework": "iso_14001",
-                        "margin_pct": 57.56332855104379
+                        "margin_pct": 57.7424463146768
                     },
                     {
                         "title": "Emergency preparedness",
@@ -578,9 +653,9 @@
                         "target": 5.6,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 6.401000831171673,
+                        "value": 6.396032849648134,
                         "framework": "iso_14001",
-                        "margin_pct": 14.303586270922734
+                        "margin_pct": 14.214872315145259
                     }
                 ],
                 "at_risk": 0,
@@ -603,9 +678,9 @@
                         "target": 5,
                         "evidence": "kpi_report",
                         "framework_title": "EU Industrial Emissions Directive 2010/75",
-                        "value": 2.709607902877662,
+                        "value": 2.717252142376749,
                         "framework": "eu_ied",
-                        "margin_pct": 45.80784194244676
+                        "margin_pct": 45.65495715246502
                     },
                     {
                         "title": "Energy efficiency of BAT",
@@ -618,9 +693,9 @@
                         "target": 12.5,
                         "evidence": "kpi_report",
                         "framework_title": "EU Industrial Emissions Directive 2010/75",
-                        "value": 2.015020778751072,
+                        "value": 2.0070074736212122,
                         "framework": "eu_ied",
-                        "margin_pct": 83.87983376999142
+                        "margin_pct": 83.94394021103031
                     },
                     {
                         "title": "Continuous monitoring",
@@ -633,9 +708,9 @@
                         "target": 98,
                         "evidence": "quality_register",
                         "framework_title": "EU Industrial Emissions Directive 2010/75",
-                        "value": 99.81949200913239,
+                        "value": 99.80957580570445,
                         "framework": "eu_ied",
-                        "margin_pct": 1.856624499114683
+                        "margin_pct": 1.8465059241882193
                     },
                     {
                         "title": "Waste management plan",
@@ -648,9 +723,9 @@
                         "target": 1,
                         "evidence": "kpi_report",
                         "framework_title": "EU Industrial Emissions Directive 2010/75",
-                        "value": 0.49978147363553443,
+                        "value": 0.49854872878834094,
                         "framework": "eu_ied",
-                        "margin_pct": 50.02185263644656
+                        "margin_pct": 50.1451271211659
                     }
                 ],
                 "at_risk": 0,
@@ -858,6 +933,50 @@
                 "basis": "the merchant acid leaves the evaporators at specification"
             },
             {
+                "clause": "acid_specification",
+                "comparator": "le",
+                "metric": "acid_so4",
+                "unit": "wt_pct",
+                "title": "Merchant acid specification",
+                "target": 1.5,
+                "framework": "iso_9001",
+                "evidence": "kpi_report",
+                "basis": "the sulphate of the merchant acid is the first limit of the traded grade"
+            },
+            {
+                "clause": "acid_fluorine",
+                "comparator": "le",
+                "metric": "acid_f",
+                "unit": "wt_pct",
+                "title": "Fluorine of the merchant acid",
+                "target": 0.5,
+                "framework": "iso_9001",
+                "evidence": "kpi_report",
+                "basis": "fluorine above the specification corrodes the storage and the customer's plant"
+            },
+            {
+                "clause": "acid_solids",
+                "comparator": "le",
+                "metric": "acid_solids",
+                "unit": "wt_pct",
+                "title": "Solids of the merchant acid",
+                "target": 0.5,
+                "framework": "iso_9001",
+                "evidence": "kpi_report",
+                "basis": "the fines the filters let through settle in the storage tanks"
+            },
+            {
+                "clause": "acid_yield",
+                "comparator": "ge",
+                "metric": "acid_p2o5_yield",
+                "unit": "pct",
+                "title": "Yield of the acid route",
+                "target": 96.5,
+                "framework": "iso_9001",
+                "evidence": "kpi_report",
+                "basis": "the P2O5 that reaches the filters over the P2O5 fed to the attack"
+            },
+            {
                 "clause": "scope_1",
                 "comparator": "le",
                 "metric": "scope_1_t",
@@ -1001,6 +1120,17 @@
                 "basis": "sulphuric acid per tonne of P2O5"
             },
             {
+                "clause": "acid_steam",
+                "comparator": "le",
+                "metric": "acid_steam",
+                "unit": "t_ph",
+                "title": "Steam of the acid concentration",
+                "target": 0.62,
+                "framework": "ifa_bat",
+                "evidence": "kpi_report",
+                "basis": "steam per tonne of P2O5 concentrated: the largest energy item of the acid route"
+            },
+            {
                 "clause": "water_soluble",
                 "comparator": "le",
                 "metric": "water_soluble_loss",
@@ -1079,9 +1209,9 @@
                 "target": 12.5,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 2.015020778751072,
+                "value": 2.0070074736212122,
                 "framework": "iso_50001",
-                "margin_pct": 83.87983376999142
+                "margin_pct": 83.94394021103031
             },
             {
                 "title": "Energy performance indicator",
@@ -1094,9 +1224,9 @@
                 "target": 100,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 16.120166230008575,
+                "value": 16.056059788969698,
                 "framework": "iso_50001",
-                "margin_pct": 83.87983376999142
+                "margin_pct": 83.94394021103031
             },
             {
                 "title": "Baseline data quality",
@@ -1109,9 +1239,9 @@
                 "target": 98,
                 "evidence": "quality_register",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 99.81949200913239,
+                "value": 99.80957580570445,
                 "framework": "iso_50001",
-                "margin_pct": 1.856624499114683
+                "margin_pct": 1.8465059241882193
             },
             {
                 "title": "Objectives and targets",
@@ -1124,9 +1254,9 @@
                 "target": 70,
                 "evidence": "target_register",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 85,
+                "value": 89.28571428571429,
                 "framework": "iso_50001",
-                "margin_pct": 21.428571428571427
+                "margin_pct": 27.55102040816327
             },
             {
                 "title": "Operational control",
@@ -1139,7 +1269,7 @@
                 "target": 0,
                 "evidence": "diagnostics_register",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 29,
+                "value": 30,
                 "framework": "iso_50001",
                 "margin_pct": null
             },
@@ -1154,9 +1284,9 @@
                 "target": 40,
                 "evidence": "instrument_register",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 64,
+                "value": 69,
                 "framework": "iso_50001",
-                "margin_pct": 60
+                "margin_pct": 72.5
             },
             {
                 "title": "Significant environmental aspects",
@@ -1169,9 +1299,9 @@
                 "target": 5,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 2.709607902877662,
+                "value": 2.717252142376749,
                 "framework": "iso_14001",
-                "margin_pct": 45.80784194244676
+                "margin_pct": 45.65495715246502
             },
             {
                 "title": "Emissions monitoring",
@@ -1184,9 +1314,9 @@
                 "target": 30,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 21.78400165217183,
+                "value": 21.79517898531,
                 "framework": "iso_14001",
-                "margin_pct": 27.386661159427227
+                "margin_pct": 27.349403382300004
             },
             {
                 "title": "Waste management",
@@ -1199,9 +1329,9 @@
                 "target": 1,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 0.49978147363553443,
+                "value": 0.49854872878834094,
                 "framework": "iso_14001",
-                "margin_pct": 50.02185263644656
+                "margin_pct": 50.1451271211659
             },
             {
                 "title": "Water balance and discharge",
@@ -1214,9 +1344,9 @@
                 "target": 8,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 3.3949337159164967,
+                "value": 3.3806042948258557,
                 "framework": "iso_14001",
-                "margin_pct": 57.56332855104379
+                "margin_pct": 57.7424463146768
             },
             {
                 "title": "Emergency preparedness",
@@ -1229,9 +1359,9 @@
                 "target": 5.6,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 6.401000831171673,
+                "value": 6.396032849648134,
                 "framework": "iso_14001",
-                "margin_pct": 14.303586270922734
+                "margin_pct": 14.214872315145259
             },
             {
                 "title": "Water use review",
@@ -1244,9 +1374,9 @@
                 "target": 8,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 46001:2019 water efficiency",
-                "value": 3.3949337159164967,
+                "value": 3.3806042948258557,
                 "framework": "iso_46001",
-                "margin_pct": 57.56332855104379
+                "margin_pct": 57.7424463146768
             },
             {
                 "title": "Water reuse",
@@ -1259,9 +1389,9 @@
                 "target": 65,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 46001:2019 water efficiency",
-                "value": 70.34063981307024,
+                "value": 70.3240689832943,
                 "framework": "iso_46001",
-                "margin_pct": 8.216368943184985
+                "margin_pct": 8.190875358914301
             },
             {
                 "title": "Effluent quality",
@@ -1274,9 +1404,9 @@
                 "target": 8.5,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 46001:2019 water efficiency",
-                "value": 7.399313350570335,
+                "value": 7.399771304448648,
                 "framework": "iso_46001",
-                "margin_pct": 12.949254699172531
+                "margin_pct": 12.943867006486494
             },
             {
                 "title": "Product specification",
@@ -1289,9 +1419,9 @@
                 "target": 17.4,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 9001:2015 quality management",
-                "value": 18.140946841076513,
+                "value": 18.14239313739263,
                 "framework": "iso_9001",
-                "margin_pct": 4.2583151786006574
+                "margin_pct": 4.266627226394439
             },
             {
                 "title": "Product moisture",
@@ -1304,9 +1434,9 @@
                 "target": 2,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 9001:2015 quality management",
-                "value": 1.7505109309302112,
+                "value": 1.7522987109054644,
                 "framework": "iso_9001",
-                "margin_pct": 12.474453453489442
+                "margin_pct": 12.38506445472678
             },
             {
                 "title": "Product solubility",
@@ -1319,9 +1449,9 @@
                 "target": 85,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 9001:2015 quality management",
-                "value": 88.49703578229271,
+                "value": 88.505763552991,
                 "framework": "iso_9001",
-                "margin_pct": 4.114159743873779
+                "margin_pct": 4.124427709401175
             },
             {
                 "title": "Control of production",
@@ -1334,9 +1464,69 @@
                 "target": 50.5,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 9001:2015 quality management",
-                "value": 55.852585514148224,
+                "value": 55.85244380353741,
                 "framework": "iso_9001",
-                "margin_pct": 10.599179235937077
+                "margin_pct": 10.598898620866162
+            },
+            {
+                "title": "Merchant acid specification",
+                "comparator": "le",
+                "metric": "acid_so4",
+                "basis": "the sulphate of the merchant acid is the first limit of the traded grade",
+                "clause": "acid_specification",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "target": 1.5,
+                "evidence": "kpi_report",
+                "framework_title": "ISO 9001:2015 quality management",
+                "value": 1.1641849234992954,
+                "framework": "iso_9001",
+                "margin_pct": 22.38767176671364
+            },
+            {
+                "title": "Fluorine of the merchant acid",
+                "comparator": "le",
+                "metric": "acid_f",
+                "basis": "fluorine above the specification corrodes the storage and the customer's plant",
+                "clause": "acid_fluorine",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "target": 0.5,
+                "evidence": "kpi_report",
+                "framework_title": "ISO 9001:2015 quality management",
+                "value": 0.35326721974317093,
+                "framework": "iso_9001",
+                "margin_pct": 29.346556051365813
+            },
+            {
+                "title": "Solids of the merchant acid",
+                "comparator": "le",
+                "metric": "acid_solids",
+                "basis": "the fines the filters let through settle in the storage tanks",
+                "clause": "acid_solids",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "target": 0.5,
+                "evidence": "kpi_report",
+                "framework_title": "ISO 9001:2015 quality management",
+                "value": 0.29432599185109604,
+                "framework": "iso_9001",
+                "margin_pct": 41.134801629780796
+            },
+            {
+                "title": "Yield of the acid route",
+                "comparator": "ge",
+                "metric": "acid_p2o5_yield",
+                "basis": "the P2O5 that reaches the filters over the P2O5 fed to the attack",
+                "clause": "acid_yield",
+                "status": "compliant",
+                "unit": "pct",
+                "target": 96.5,
+                "evidence": "kpi_report",
+                "framework_title": "ISO 9001:2015 quality management",
+                "value": 97.68139539950859,
+                "framework": "iso_9001",
+                "margin_pct": 1.2242439373145992
             },
             {
                 "title": "Scope 1 quantification",
@@ -1349,9 +1539,9 @@
                 "target": 48,
                 "evidence": "carbon_inventory",
                 "framework_title": "GHG Protocol corporate standard",
-                "value": 36338.02137668385,
+                "value": 36379.54479519054,
                 "framework": "ghg_protocol",
-                "margin_pct": -75604.2112014247
+                "margin_pct": -75690.71832331362
             },
             {
                 "title": "Scope 2 quantification",
@@ -1364,9 +1554,9 @@
                 "target": 240,
                 "evidence": "carbon_inventory",
                 "framework_title": "GHG Protocol corporate standard",
-                "value": 21927.799564865552,
+                "value": 21954.67389995146,
                 "framework": "ghg_protocol",
-                "margin_pct": -9036.583152027313
+                "margin_pct": -9047.780791646443
             },
             {
                 "title": "Emissions intensity",
@@ -1379,9 +1569,9 @@
                 "target": 145,
                 "evidence": "carbon_inventory",
                 "framework_title": "GHG Protocol corporate standard",
-                "value": 56.106953745474236,
+                "value": 55.98016094551436,
                 "framework": "ghg_protocol",
-                "margin_pct": 61.305549141052246
+                "margin_pct": 61.3929924513694
             },
             {
                 "title": "Emission factor register",
@@ -1409,9 +1599,9 @@
                 "target": 5,
                 "evidence": "kpi_report",
                 "framework_title": "EU Industrial Emissions Directive 2010/75",
-                "value": 2.709607902877662,
+                "value": 2.717252142376749,
                 "framework": "eu_ied",
-                "margin_pct": 45.80784194244676
+                "margin_pct": 45.65495715246502
             },
             {
                 "title": "Energy efficiency of BAT",
@@ -1424,9 +1614,9 @@
                 "target": 12.5,
                 "evidence": "kpi_report",
                 "framework_title": "EU Industrial Emissions Directive 2010/75",
-                "value": 2.015020778751072,
+                "value": 2.0070074736212122,
                 "framework": "eu_ied",
-                "margin_pct": 83.87983376999142
+                "margin_pct": 83.94394021103031
             },
             {
                 "title": "Continuous monitoring",
@@ -1439,9 +1629,9 @@
                 "target": 98,
                 "evidence": "quality_register",
                 "framework_title": "EU Industrial Emissions Directive 2010/75",
-                "value": 99.81949200913239,
+                "value": 99.80957580570445,
                 "framework": "eu_ied",
-                "margin_pct": 1.856624499114683
+                "margin_pct": 1.8465059241882193
             },
             {
                 "title": "Waste management plan",
@@ -1454,9 +1644,9 @@
                 "target": 1,
                 "evidence": "kpi_report",
                 "framework_title": "EU Industrial Emissions Directive 2010/75",
-                "value": 0.49978147363553443,
+                "value": 0.49854872878834094,
                 "framework": "eu_ied",
-                "margin_pct": 50.02185263644656
+                "margin_pct": 50.1451271211659
             },
             {
                 "title": "Fluoride emission limit",
@@ -1469,9 +1659,9 @@
                 "target": 5,
                 "evidence": "kpi_report",
                 "framework_title": "US EPA 40 CFR 63 subpart AA",
-                "value": 2.709607902877662,
+                "value": 2.717252142376749,
                 "framework": "us_epa_40cfr63",
-                "margin_pct": 45.80784194244676
+                "margin_pct": 45.65495715246502
             },
             {
                 "title": "Scrubber operating limit",
@@ -1484,9 +1674,9 @@
                 "target": 5.6,
                 "evidence": "kpi_report",
                 "framework_title": "US EPA 40 CFR 63 subpart AA",
-                "value": 6.401000831171673,
+                "value": 6.396032849648134,
                 "framework": "us_epa_40cfr63",
-                "margin_pct": 14.303586270922734
+                "margin_pct": 14.214872315145259
             },
             {
                 "title": "Record keeping",
@@ -1499,9 +1689,9 @@
                 "target": 98,
                 "evidence": "quality_register",
                 "framework_title": "US EPA 40 CFR 63 subpart AA",
-                "value": 99.81949200913239,
+                "value": 99.80957580570445,
                 "framework": "us_epa_40cfr63",
-                "margin_pct": 1.856624499114683
+                "margin_pct": 1.8465059241882193
             },
             {
                 "title": "P2O5 recovery of the route",
@@ -1514,9 +1704,9 @@
                 "target": 94,
                 "evidence": "kpi_report",
                 "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                "value": 83.82511295472499,
+                "value": 83.6510821846091,
                 "framework": "ifa_bat",
-                "margin_pct": -10.824347920505334
+                "margin_pct": -11.0094870376499
             },
             {
                 "title": "Specific acid demand",
@@ -1529,9 +1719,24 @@
                 "target": 2.85,
                 "evidence": "kpi_report",
                 "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                "value": 2.829330791854544,
+                "value": 2.823433949113338,
                 "framework": "ifa_bat",
-                "margin_pct": 0.7252353735247807
+                "margin_pct": 0.932142136374116
+            },
+            {
+                "title": "Steam of the acid concentration",
+                "comparator": "le",
+                "metric": "acid_steam",
+                "basis": "steam per tonne of P2O5 concentrated: the largest energy item of the acid route",
+                "clause": "acid_steam",
+                "status": "compliant",
+                "unit": "t_ph",
+                "target": 0.62,
+                "evidence": "kpi_report",
+                "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
+                "value": 0.4114923425935953,
+                "framework": "ifa_bat",
+                "margin_pct": 33.63026732361366
             },
             {
                 "title": "Water-soluble loss",
@@ -1544,9 +1749,9 @@
                 "target": 2,
                 "evidence": "kpi_report",
                 "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                "value": 2.33549971579914,
+                "value": 2.3186046004914065,
                 "framework": "ifa_bat",
-                "margin_pct": -16.774985789956997
+                "margin_pct": -15.930230024570324
             },
             {
                 "title": "Fluorine recovery",
@@ -1574,9 +1779,9 @@
                 "target": 170,
                 "evidence": "kpi_report",
                 "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                "value": 150.5547898488827,
+                "value": 150.60178958821658,
                 "framework": "ifa_bat",
-                "margin_pct": 11.438358912421938
+                "margin_pct": 11.410712006931426
             },
             {
                 "title": "Gypsum quality to the stack",
@@ -1589,9 +1794,9 @@
                 "target": 1,
                 "evidence": "kpi_report",
                 "framework_title": "Phosphogypsum stack management code",
-                "value": 0.49978147363553443,
+                "value": 0.49854872878834094,
                 "framework": "phosphogypsum_code",
-                "margin_pct": 50.02185263644656
+                "margin_pct": 50.1451271211659
             },
             {
                 "title": "Water return to the plant",
@@ -1604,9 +1809,9 @@
                 "target": 65,
                 "evidence": "kpi_report",
                 "framework_title": "Phosphogypsum stack management code",
-                "value": 70.34063981307024,
+                "value": 70.3240689832943,
                 "framework": "phosphogypsum_code",
-                "margin_pct": 8.216368943184985
+                "margin_pct": 8.190875358914301
             },
             {
                 "title": "Dust control on the stack",
@@ -1619,9 +1824,9 @@
                 "target": 30,
                 "evidence": "kpi_report",
                 "framework_title": "Phosphogypsum stack management code",
-                "value": 21.78400165217183,
+                "value": 21.79517898531,
                 "framework": "phosphogypsum_code",
-                "margin_pct": 27.386661159427227
+                "margin_pct": 27.349403382300004
             }
         ]
     },
@@ -1629,52 +1834,52 @@
         {
             "metric": "scope_1_t",
             "action": "Review the operating window with the process engineer",
-            "gap_pct": -75604.2112014247,
+            "gap_pct": -75690.71832331362,
             "clause": "scope_1",
             "status": "noncompliant",
             "unit": "t",
             "target": 48,
             "evidence": "carbon_inventory",
-            "value": 36338.02137668385,
+            "value": 36379.54479519054,
             "framework": "ghg_protocol",
             "title": "Scope 1 quantification"
         },
         {
             "metric": "scope_2_t",
             "action": "Review the operating window with the process engineer",
-            "gap_pct": -9036.583152027313,
+            "gap_pct": -9047.780791646443,
             "clause": "scope_2",
             "status": "noncompliant",
             "unit": "t",
             "target": 240,
             "evidence": "carbon_inventory",
-            "value": 21927.799564865552,
+            "value": 21954.67389995146,
             "framework": "ghg_protocol",
             "title": "Scope 2 quantification"
         },
         {
             "metric": "water_soluble_loss",
             "action": "Review the operating window with the process engineer",
-            "gap_pct": -16.774985789956997,
+            "gap_pct": -15.930230024570324,
             "clause": "water_soluble",
             "status": "noncompliant",
             "unit": "pct",
             "target": 2,
             "evidence": "kpi_report",
-            "value": 2.33549971579914,
+            "value": 2.3186046004914065,
             "framework": "ifa_bat",
             "title": "Water-soluble loss"
         },
         {
             "metric": "p2o5_recovery",
             "action": "Review the reagent dose and the grind of the blend",
-            "gap_pct": -10.824347920505334,
+            "gap_pct": -11.0094870376499,
             "clause": "recovery",
             "status": "noncompliant",
             "unit": "pct",
             "target": 94,
             "evidence": "kpi_report",
-            "value": 83.82511295472499,
+            "value": 83.6510821846091,
             "framework": "ifa_bat",
             "title": "P2O5 recovery of the route"
         },
@@ -1687,7 +1892,7 @@
             "unit": "count",
             "target": 0,
             "evidence": "diagnostics_register",
-            "value": 29,
+            "value": 30,
             "framework": "iso_50001",
             "title": "Operational control"
         }
@@ -1705,9 +1910,9 @@
         "phosphogypsum_code"
     ],
     "scorecard": {
-        "compliance_pct": 86.48648648648648,
+        "compliance_pct": 88.0952380952381,
         "overall_status": "noncompliant",
-        "compliant": 32,
+        "compliant": 37,
         "noncompliant": 5,
         "rows": [
             {
@@ -1721,9 +1926,9 @@
                 "target": 12.5,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 2.015020778751072,
+                "value": 2.0070074736212122,
                 "framework": "iso_50001",
-                "margin_pct": 83.87983376999142
+                "margin_pct": 83.94394021103031
             },
             {
                 "title": "Energy performance indicator",
@@ -1736,9 +1941,9 @@
                 "target": 100,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 16.120166230008575,
+                "value": 16.056059788969698,
                 "framework": "iso_50001",
-                "margin_pct": 83.87983376999142
+                "margin_pct": 83.94394021103031
             },
             {
                 "title": "Baseline data quality",
@@ -1751,9 +1956,9 @@
                 "target": 98,
                 "evidence": "quality_register",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 99.81949200913239,
+                "value": 99.80957580570445,
                 "framework": "iso_50001",
-                "margin_pct": 1.856624499114683
+                "margin_pct": 1.8465059241882193
             },
             {
                 "title": "Objectives and targets",
@@ -1766,9 +1971,9 @@
                 "target": 70,
                 "evidence": "target_register",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 85,
+                "value": 89.28571428571429,
                 "framework": "iso_50001",
-                "margin_pct": 21.428571428571427
+                "margin_pct": 27.55102040816327
             },
             {
                 "title": "Operational control",
@@ -1781,7 +1986,7 @@
                 "target": 0,
                 "evidence": "diagnostics_register",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 29,
+                "value": 30,
                 "framework": "iso_50001",
                 "margin_pct": null
             },
@@ -1796,9 +2001,9 @@
                 "target": 40,
                 "evidence": "instrument_register",
                 "framework_title": "ISO 50001:2018 energy management",
-                "value": 64,
+                "value": 69,
                 "framework": "iso_50001",
-                "margin_pct": 60
+                "margin_pct": 72.5
             },
             {
                 "title": "Significant environmental aspects",
@@ -1811,9 +2016,9 @@
                 "target": 5,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 2.709607902877662,
+                "value": 2.717252142376749,
                 "framework": "iso_14001",
-                "margin_pct": 45.80784194244676
+                "margin_pct": 45.65495715246502
             },
             {
                 "title": "Emissions monitoring",
@@ -1826,9 +2031,9 @@
                 "target": 30,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 21.78400165217183,
+                "value": 21.79517898531,
                 "framework": "iso_14001",
-                "margin_pct": 27.386661159427227
+                "margin_pct": 27.349403382300004
             },
             {
                 "title": "Waste management",
@@ -1841,9 +2046,9 @@
                 "target": 1,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 0.49978147363553443,
+                "value": 0.49854872878834094,
                 "framework": "iso_14001",
-                "margin_pct": 50.02185263644656
+                "margin_pct": 50.1451271211659
             },
             {
                 "title": "Water balance and discharge",
@@ -1856,9 +2061,9 @@
                 "target": 8,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 3.3949337159164967,
+                "value": 3.3806042948258557,
                 "framework": "iso_14001",
-                "margin_pct": 57.56332855104379
+                "margin_pct": 57.7424463146768
             },
             {
                 "title": "Emergency preparedness",
@@ -1871,9 +2076,9 @@
                 "target": 5.6,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 14001:2015 environmental management",
-                "value": 6.401000831171673,
+                "value": 6.396032849648134,
                 "framework": "iso_14001",
-                "margin_pct": 14.303586270922734
+                "margin_pct": 14.214872315145259
             },
             {
                 "title": "Water use review",
@@ -1886,9 +2091,9 @@
                 "target": 8,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 46001:2019 water efficiency",
-                "value": 3.3949337159164967,
+                "value": 3.3806042948258557,
                 "framework": "iso_46001",
-                "margin_pct": 57.56332855104379
+                "margin_pct": 57.7424463146768
             },
             {
                 "title": "Water reuse",
@@ -1901,9 +2106,9 @@
                 "target": 65,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 46001:2019 water efficiency",
-                "value": 70.34063981307024,
+                "value": 70.3240689832943,
                 "framework": "iso_46001",
-                "margin_pct": 8.216368943184985
+                "margin_pct": 8.190875358914301
             },
             {
                 "title": "Effluent quality",
@@ -1916,9 +2121,9 @@
                 "target": 8.5,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 46001:2019 water efficiency",
-                "value": 7.399313350570335,
+                "value": 7.399771304448648,
                 "framework": "iso_46001",
-                "margin_pct": 12.949254699172531
+                "margin_pct": 12.943867006486494
             },
             {
                 "title": "Product specification",
@@ -1931,9 +2136,9 @@
                 "target": 17.4,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 9001:2015 quality management",
-                "value": 18.140946841076513,
+                "value": 18.14239313739263,
                 "framework": "iso_9001",
-                "margin_pct": 4.2583151786006574
+                "margin_pct": 4.266627226394439
             },
             {
                 "title": "Product moisture",
@@ -1946,9 +2151,9 @@
                 "target": 2,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 9001:2015 quality management",
-                "value": 1.7505109309302112,
+                "value": 1.7522987109054644,
                 "framework": "iso_9001",
-                "margin_pct": 12.474453453489442
+                "margin_pct": 12.38506445472678
             },
             {
                 "title": "Product solubility",
@@ -1961,9 +2166,9 @@
                 "target": 85,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 9001:2015 quality management",
-                "value": 88.49703578229271,
+                "value": 88.505763552991,
                 "framework": "iso_9001",
-                "margin_pct": 4.114159743873779
+                "margin_pct": 4.124427709401175
             },
             {
                 "title": "Control of production",
@@ -1976,9 +2181,69 @@
                 "target": 50.5,
                 "evidence": "kpi_report",
                 "framework_title": "ISO 9001:2015 quality management",
-                "value": 55.852585514148224,
+                "value": 55.85244380353741,
                 "framework": "iso_9001",
-                "margin_pct": 10.599179235937077
+                "margin_pct": 10.598898620866162
+            },
+            {
+                "title": "Merchant acid specification",
+                "comparator": "le",
+                "metric": "acid_so4",
+                "basis": "the sulphate of the merchant acid is the first limit of the traded grade",
+                "clause": "acid_specification",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "target": 1.5,
+                "evidence": "kpi_report",
+                "framework_title": "ISO 9001:2015 quality management",
+                "value": 1.1641849234992954,
+                "framework": "iso_9001",
+                "margin_pct": 22.38767176671364
+            },
+            {
+                "title": "Fluorine of the merchant acid",
+                "comparator": "le",
+                "metric": "acid_f",
+                "basis": "fluorine above the specification corrodes the storage and the customer's plant",
+                "clause": "acid_fluorine",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "target": 0.5,
+                "evidence": "kpi_report",
+                "framework_title": "ISO 9001:2015 quality management",
+                "value": 0.35326721974317093,
+                "framework": "iso_9001",
+                "margin_pct": 29.346556051365813
+            },
+            {
+                "title": "Solids of the merchant acid",
+                "comparator": "le",
+                "metric": "acid_solids",
+                "basis": "the fines the filters let through settle in the storage tanks",
+                "clause": "acid_solids",
+                "status": "compliant",
+                "unit": "wt_pct",
+                "target": 0.5,
+                "evidence": "kpi_report",
+                "framework_title": "ISO 9001:2015 quality management",
+                "value": 0.29432599185109604,
+                "framework": "iso_9001",
+                "margin_pct": 41.134801629780796
+            },
+            {
+                "title": "Yield of the acid route",
+                "comparator": "ge",
+                "metric": "acid_p2o5_yield",
+                "basis": "the P2O5 that reaches the filters over the P2O5 fed to the attack",
+                "clause": "acid_yield",
+                "status": "compliant",
+                "unit": "pct",
+                "target": 96.5,
+                "evidence": "kpi_report",
+                "framework_title": "ISO 9001:2015 quality management",
+                "value": 97.68139539950859,
+                "framework": "iso_9001",
+                "margin_pct": 1.2242439373145992
             },
             {
                 "title": "Scope 1 quantification",
@@ -1991,9 +2256,9 @@
                 "target": 48,
                 "evidence": "carbon_inventory",
                 "framework_title": "GHG Protocol corporate standard",
-                "value": 36338.02137668385,
+                "value": 36379.54479519054,
                 "framework": "ghg_protocol",
-                "margin_pct": -75604.2112014247
+                "margin_pct": -75690.71832331362
             },
             {
                 "title": "Scope 2 quantification",
@@ -2006,9 +2271,9 @@
                 "target": 240,
                 "evidence": "carbon_inventory",
                 "framework_title": "GHG Protocol corporate standard",
-                "value": 21927.799564865552,
+                "value": 21954.67389995146,
                 "framework": "ghg_protocol",
-                "margin_pct": -9036.583152027313
+                "margin_pct": -9047.780791646443
             },
             {
                 "title": "Emissions intensity",
@@ -2021,9 +2286,9 @@
                 "target": 145,
                 "evidence": "carbon_inventory",
                 "framework_title": "GHG Protocol corporate standard",
-                "value": 56.106953745474236,
+                "value": 55.98016094551436,
                 "framework": "ghg_protocol",
-                "margin_pct": 61.305549141052246
+                "margin_pct": 61.3929924513694
             },
             {
                 "title": "Emission factor register",
@@ -2051,9 +2316,9 @@
                 "target": 5,
                 "evidence": "kpi_report",
                 "framework_title": "EU Industrial Emissions Directive 2010/75",
-                "value": 2.709607902877662,
+                "value": 2.717252142376749,
                 "framework": "eu_ied",
-                "margin_pct": 45.80784194244676
+                "margin_pct": 45.65495715246502
             },
             {
                 "title": "Energy efficiency of BAT",
@@ -2066,9 +2331,9 @@
                 "target": 12.5,
                 "evidence": "kpi_report",
                 "framework_title": "EU Industrial Emissions Directive 2010/75",
-                "value": 2.015020778751072,
+                "value": 2.0070074736212122,
                 "framework": "eu_ied",
-                "margin_pct": 83.87983376999142
+                "margin_pct": 83.94394021103031
             },
             {
                 "title": "Continuous monitoring",
@@ -2081,9 +2346,9 @@
                 "target": 98,
                 "evidence": "quality_register",
                 "framework_title": "EU Industrial Emissions Directive 2010/75",
-                "value": 99.81949200913239,
+                "value": 99.80957580570445,
                 "framework": "eu_ied",
-                "margin_pct": 1.856624499114683
+                "margin_pct": 1.8465059241882193
             },
             {
                 "title": "Waste management plan",
@@ -2096,9 +2361,9 @@
                 "target": 1,
                 "evidence": "kpi_report",
                 "framework_title": "EU Industrial Emissions Directive 2010/75",
-                "value": 0.49978147363553443,
+                "value": 0.49854872878834094,
                 "framework": "eu_ied",
-                "margin_pct": 50.02185263644656
+                "margin_pct": 50.1451271211659
             },
             {
                 "title": "Fluoride emission limit",
@@ -2111,9 +2376,9 @@
                 "target": 5,
                 "evidence": "kpi_report",
                 "framework_title": "US EPA 40 CFR 63 subpart AA",
-                "value": 2.709607902877662,
+                "value": 2.717252142376749,
                 "framework": "us_epa_40cfr63",
-                "margin_pct": 45.80784194244676
+                "margin_pct": 45.65495715246502
             },
             {
                 "title": "Scrubber operating limit",
@@ -2126,9 +2391,9 @@
                 "target": 5.6,
                 "evidence": "kpi_report",
                 "framework_title": "US EPA 40 CFR 63 subpart AA",
-                "value": 6.401000831171673,
+                "value": 6.396032849648134,
                 "framework": "us_epa_40cfr63",
-                "margin_pct": 14.303586270922734
+                "margin_pct": 14.214872315145259
             },
             {
                 "title": "Record keeping",
@@ -2141,9 +2406,9 @@
                 "target": 98,
                 "evidence": "quality_register",
                 "framework_title": "US EPA 40 CFR 63 subpart AA",
-                "value": 99.81949200913239,
+                "value": 99.80957580570445,
                 "framework": "us_epa_40cfr63",
-                "margin_pct": 1.856624499114683
+                "margin_pct": 1.8465059241882193
             },
             {
                 "title": "P2O5 recovery of the route",
@@ -2156,9 +2421,9 @@
                 "target": 94,
                 "evidence": "kpi_report",
                 "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                "value": 83.82511295472499,
+                "value": 83.6510821846091,
                 "framework": "ifa_bat",
-                "margin_pct": -10.824347920505334
+                "margin_pct": -11.0094870376499
             },
             {
                 "title": "Specific acid demand",
@@ -2171,9 +2436,24 @@
                 "target": 2.85,
                 "evidence": "kpi_report",
                 "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                "value": 2.829330791854544,
+                "value": 2.823433949113338,
                 "framework": "ifa_bat",
-                "margin_pct": 0.7252353735247807
+                "margin_pct": 0.932142136374116
+            },
+            {
+                "title": "Steam of the acid concentration",
+                "comparator": "le",
+                "metric": "acid_steam",
+                "basis": "steam per tonne of P2O5 concentrated: the largest energy item of the acid route",
+                "clause": "acid_steam",
+                "status": "compliant",
+                "unit": "t_ph",
+                "target": 0.62,
+                "evidence": "kpi_report",
+                "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
+                "value": 0.4114923425935953,
+                "framework": "ifa_bat",
+                "margin_pct": 33.63026732361366
             },
             {
                 "title": "Water-soluble loss",
@@ -2186,9 +2466,9 @@
                 "target": 2,
                 "evidence": "kpi_report",
                 "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                "value": 2.33549971579914,
+                "value": 2.3186046004914065,
                 "framework": "ifa_bat",
-                "margin_pct": -16.774985789956997
+                "margin_pct": -15.930230024570324
             },
             {
                 "title": "Fluorine recovery",
@@ -2216,9 +2496,9 @@
                 "target": 170,
                 "evidence": "kpi_report",
                 "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                "value": 150.5547898488827,
+                "value": 150.60178958821658,
                 "framework": "ifa_bat",
-                "margin_pct": 11.438358912421938
+                "margin_pct": 11.410712006931426
             },
             {
                 "title": "Gypsum quality to the stack",
@@ -2231,9 +2511,9 @@
                 "target": 1,
                 "evidence": "kpi_report",
                 "framework_title": "Phosphogypsum stack management code",
-                "value": 0.49978147363553443,
+                "value": 0.49854872878834094,
                 "framework": "phosphogypsum_code",
-                "margin_pct": 50.02185263644656
+                "margin_pct": 50.1451271211659
             },
             {
                 "title": "Water return to the plant",
@@ -2246,9 +2526,9 @@
                 "target": 65,
                 "evidence": "kpi_report",
                 "framework_title": "Phosphogypsum stack management code",
-                "value": 70.34063981307024,
+                "value": 70.3240689832943,
                 "framework": "phosphogypsum_code",
-                "margin_pct": 8.216368943184985
+                "margin_pct": 8.190875358914301
             },
             {
                 "title": "Dust control on the stack",
@@ -2261,9 +2541,9 @@
                 "target": 30,
                 "evidence": "kpi_report",
                 "framework_title": "Phosphogypsum stack management code",
-                "value": 21.78400165217183,
+                "value": 21.79517898531,
                 "framework": "phosphogypsum_code",
-                "margin_pct": 27.386661159427227
+                "margin_pct": 27.349403382300004
             }
         ],
         "at_risk": 0,
@@ -2285,9 +2565,9 @@
                         "target": 5,
                         "evidence": "kpi_report",
                         "framework_title": "US EPA 40 CFR 63 subpart AA",
-                        "value": 2.709607902877662,
+                        "value": 2.717252142376749,
                         "framework": "us_epa_40cfr63",
-                        "margin_pct": 45.80784194244676
+                        "margin_pct": 45.65495715246502
                     },
                     {
                         "title": "Scrubber operating limit",
@@ -2300,9 +2580,9 @@
                         "target": 5.6,
                         "evidence": "kpi_report",
                         "framework_title": "US EPA 40 CFR 63 subpart AA",
-                        "value": 6.401000831171673,
+                        "value": 6.396032849648134,
                         "framework": "us_epa_40cfr63",
-                        "margin_pct": 14.303586270922734
+                        "margin_pct": 14.214872315145259
                     },
                     {
                         "title": "Record keeping",
@@ -2315,9 +2595,9 @@
                         "target": 98,
                         "evidence": "quality_register",
                         "framework_title": "US EPA 40 CFR 63 subpart AA",
-                        "value": 99.81949200913239,
+                        "value": 99.80957580570445,
                         "framework": "us_epa_40cfr63",
-                        "margin_pct": 1.856624499114683
+                        "margin_pct": 1.8465059241882193
                     }
                 ],
                 "at_risk": 0,
@@ -2326,7 +2606,7 @@
             },
             "iso_9001": {
                 "compliance_pct": 100,
-                "compliant": 4,
+                "compliant": 8,
                 "noncompliant": 0,
                 "rows": [
                     {
@@ -2340,9 +2620,9 @@
                         "target": 17.4,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 9001:2015 quality management",
-                        "value": 18.140946841076513,
+                        "value": 18.14239313739263,
                         "framework": "iso_9001",
-                        "margin_pct": 4.2583151786006574
+                        "margin_pct": 4.266627226394439
                     },
                     {
                         "title": "Product moisture",
@@ -2355,9 +2635,9 @@
                         "target": 2,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 9001:2015 quality management",
-                        "value": 1.7505109309302112,
+                        "value": 1.7522987109054644,
                         "framework": "iso_9001",
-                        "margin_pct": 12.474453453489442
+                        "margin_pct": 12.38506445472678
                     },
                     {
                         "title": "Product solubility",
@@ -2370,9 +2650,9 @@
                         "target": 85,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 9001:2015 quality management",
-                        "value": 88.49703578229271,
+                        "value": 88.505763552991,
                         "framework": "iso_9001",
-                        "margin_pct": 4.114159743873779
+                        "margin_pct": 4.124427709401175
                     },
                     {
                         "title": "Control of production",
@@ -2385,18 +2665,78 @@
                         "target": 50.5,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 9001:2015 quality management",
-                        "value": 55.852585514148224,
+                        "value": 55.85244380353741,
                         "framework": "iso_9001",
-                        "margin_pct": 10.599179235937077
+                        "margin_pct": 10.598898620866162
+                    },
+                    {
+                        "title": "Merchant acid specification",
+                        "comparator": "le",
+                        "metric": "acid_so4",
+                        "basis": "the sulphate of the merchant acid is the first limit of the traded grade",
+                        "clause": "acid_specification",
+                        "status": "compliant",
+                        "unit": "wt_pct",
+                        "target": 1.5,
+                        "evidence": "kpi_report",
+                        "framework_title": "ISO 9001:2015 quality management",
+                        "value": 1.1641849234992954,
+                        "framework": "iso_9001",
+                        "margin_pct": 22.38767176671364
+                    },
+                    {
+                        "title": "Fluorine of the merchant acid",
+                        "comparator": "le",
+                        "metric": "acid_f",
+                        "basis": "fluorine above the specification corrodes the storage and the customer's plant",
+                        "clause": "acid_fluorine",
+                        "status": "compliant",
+                        "unit": "wt_pct",
+                        "target": 0.5,
+                        "evidence": "kpi_report",
+                        "framework_title": "ISO 9001:2015 quality management",
+                        "value": 0.35326721974317093,
+                        "framework": "iso_9001",
+                        "margin_pct": 29.346556051365813
+                    },
+                    {
+                        "title": "Solids of the merchant acid",
+                        "comparator": "le",
+                        "metric": "acid_solids",
+                        "basis": "the fines the filters let through settle in the storage tanks",
+                        "clause": "acid_solids",
+                        "status": "compliant",
+                        "unit": "wt_pct",
+                        "target": 0.5,
+                        "evidence": "kpi_report",
+                        "framework_title": "ISO 9001:2015 quality management",
+                        "value": 0.29432599185109604,
+                        "framework": "iso_9001",
+                        "margin_pct": 41.134801629780796
+                    },
+                    {
+                        "title": "Yield of the acid route",
+                        "comparator": "ge",
+                        "metric": "acid_p2o5_yield",
+                        "basis": "the P2O5 that reaches the filters over the P2O5 fed to the attack",
+                        "clause": "acid_yield",
+                        "status": "compliant",
+                        "unit": "pct",
+                        "target": 96.5,
+                        "evidence": "kpi_report",
+                        "framework_title": "ISO 9001:2015 quality management",
+                        "value": 97.68139539950859,
+                        "framework": "iso_9001",
+                        "margin_pct": 1.2242439373145992
                     }
                 ],
                 "at_risk": 0,
                 "title": "ISO 9001:2015 quality management",
-                "clauses": 4
+                "clauses": 8
             },
             "ifa_bat": {
-                "compliance_pct": 60,
-                "compliant": 3,
+                "compliance_pct": 66.66666666666667,
+                "compliant": 4,
                 "noncompliant": 2,
                 "rows": [
                     {
@@ -2410,9 +2750,9 @@
                         "target": 94,
                         "evidence": "kpi_report",
                         "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                        "value": 83.82511295472499,
+                        "value": 83.6510821846091,
                         "framework": "ifa_bat",
-                        "margin_pct": -10.824347920505334
+                        "margin_pct": -11.0094870376499
                     },
                     {
                         "title": "Specific acid demand",
@@ -2425,9 +2765,24 @@
                         "target": 2.85,
                         "evidence": "kpi_report",
                         "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                        "value": 2.829330791854544,
+                        "value": 2.823433949113338,
                         "framework": "ifa_bat",
-                        "margin_pct": 0.7252353735247807
+                        "margin_pct": 0.932142136374116
+                    },
+                    {
+                        "title": "Steam of the acid concentration",
+                        "comparator": "le",
+                        "metric": "acid_steam",
+                        "basis": "steam per tonne of P2O5 concentrated: the largest energy item of the acid route",
+                        "clause": "acid_steam",
+                        "status": "compliant",
+                        "unit": "t_ph",
+                        "target": 0.62,
+                        "evidence": "kpi_report",
+                        "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
+                        "value": 0.4114923425935953,
+                        "framework": "ifa_bat",
+                        "margin_pct": 33.63026732361366
                     },
                     {
                         "title": "Water-soluble loss",
@@ -2440,9 +2795,9 @@
                         "target": 2,
                         "evidence": "kpi_report",
                         "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                        "value": 2.33549971579914,
+                        "value": 2.3186046004914065,
                         "framework": "ifa_bat",
-                        "margin_pct": -16.774985789956997
+                        "margin_pct": -15.930230024570324
                     },
                     {
                         "title": "Fluorine recovery",
@@ -2470,14 +2825,14 @@
                         "target": 170,
                         "evidence": "kpi_report",
                         "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-                        "value": 150.5547898488827,
+                        "value": 150.60178958821658,
                         "framework": "ifa_bat",
-                        "margin_pct": 11.438358912421938
+                        "margin_pct": 11.410712006931426
                     }
                 ],
                 "at_risk": 0,
                 "title": "IFA/EFMA BAT for phosphate fertilisers",
-                "clauses": 5
+                "clauses": 6
             },
             "iso_46001": {
                 "compliance_pct": 100,
@@ -2495,9 +2850,9 @@
                         "target": 8,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 46001:2019 water efficiency",
-                        "value": 3.3949337159164967,
+                        "value": 3.3806042948258557,
                         "framework": "iso_46001",
-                        "margin_pct": 57.56332855104379
+                        "margin_pct": 57.7424463146768
                     },
                     {
                         "title": "Water reuse",
@@ -2510,9 +2865,9 @@
                         "target": 65,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 46001:2019 water efficiency",
-                        "value": 70.34063981307024,
+                        "value": 70.3240689832943,
                         "framework": "iso_46001",
-                        "margin_pct": 8.216368943184985
+                        "margin_pct": 8.190875358914301
                     },
                     {
                         "title": "Effluent quality",
@@ -2525,9 +2880,9 @@
                         "target": 8.5,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 46001:2019 water efficiency",
-                        "value": 7.399313350570335,
+                        "value": 7.399771304448648,
                         "framework": "iso_46001",
-                        "margin_pct": 12.949254699172531
+                        "margin_pct": 12.943867006486494
                     }
                 ],
                 "at_risk": 0,
@@ -2550,9 +2905,9 @@
                         "target": 1,
                         "evidence": "kpi_report",
                         "framework_title": "Phosphogypsum stack management code",
-                        "value": 0.49978147363553443,
+                        "value": 0.49854872878834094,
                         "framework": "phosphogypsum_code",
-                        "margin_pct": 50.02185263644656
+                        "margin_pct": 50.1451271211659
                     },
                     {
                         "title": "Water return to the plant",
@@ -2565,9 +2920,9 @@
                         "target": 65,
                         "evidence": "kpi_report",
                         "framework_title": "Phosphogypsum stack management code",
-                        "value": 70.34063981307024,
+                        "value": 70.3240689832943,
                         "framework": "phosphogypsum_code",
-                        "margin_pct": 8.216368943184985
+                        "margin_pct": 8.190875358914301
                     },
                     {
                         "title": "Dust control on the stack",
@@ -2580,9 +2935,9 @@
                         "target": 30,
                         "evidence": "kpi_report",
                         "framework_title": "Phosphogypsum stack management code",
-                        "value": 21.78400165217183,
+                        "value": 21.79517898531,
                         "framework": "phosphogypsum_code",
-                        "margin_pct": 27.386661159427227
+                        "margin_pct": 27.349403382300004
                     }
                 ],
                 "at_risk": 0,
@@ -2605,9 +2960,9 @@
                         "target": 48,
                         "evidence": "carbon_inventory",
                         "framework_title": "GHG Protocol corporate standard",
-                        "value": 36338.02137668385,
+                        "value": 36379.54479519054,
                         "framework": "ghg_protocol",
-                        "margin_pct": -75604.2112014247
+                        "margin_pct": -75690.71832331362
                     },
                     {
                         "title": "Scope 2 quantification",
@@ -2620,9 +2975,9 @@
                         "target": 240,
                         "evidence": "carbon_inventory",
                         "framework_title": "GHG Protocol corporate standard",
-                        "value": 21927.799564865552,
+                        "value": 21954.67389995146,
                         "framework": "ghg_protocol",
-                        "margin_pct": -9036.583152027313
+                        "margin_pct": -9047.780791646443
                     },
                     {
                         "title": "Emissions intensity",
@@ -2635,9 +2990,9 @@
                         "target": 145,
                         "evidence": "carbon_inventory",
                         "framework_title": "GHG Protocol corporate standard",
-                        "value": 56.106953745474236,
+                        "value": 55.98016094551436,
                         "framework": "ghg_protocol",
-                        "margin_pct": 61.305549141052246
+                        "margin_pct": 61.3929924513694
                     },
                     {
                         "title": "Emission factor register",
@@ -2675,9 +3030,9 @@
                         "target": 12.5,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 2.015020778751072,
+                        "value": 2.0070074736212122,
                         "framework": "iso_50001",
-                        "margin_pct": 83.87983376999142
+                        "margin_pct": 83.94394021103031
                     },
                     {
                         "title": "Energy performance indicator",
@@ -2690,9 +3045,9 @@
                         "target": 100,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 16.120166230008575,
+                        "value": 16.056059788969698,
                         "framework": "iso_50001",
-                        "margin_pct": 83.87983376999142
+                        "margin_pct": 83.94394021103031
                     },
                     {
                         "title": "Baseline data quality",
@@ -2705,9 +3060,9 @@
                         "target": 98,
                         "evidence": "quality_register",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 99.81949200913239,
+                        "value": 99.80957580570445,
                         "framework": "iso_50001",
-                        "margin_pct": 1.856624499114683
+                        "margin_pct": 1.8465059241882193
                     },
                     {
                         "title": "Objectives and targets",
@@ -2720,9 +3075,9 @@
                         "target": 70,
                         "evidence": "target_register",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 85,
+                        "value": 89.28571428571429,
                         "framework": "iso_50001",
-                        "margin_pct": 21.428571428571427
+                        "margin_pct": 27.55102040816327
                     },
                     {
                         "title": "Operational control",
@@ -2735,7 +3090,7 @@
                         "target": 0,
                         "evidence": "diagnostics_register",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 29,
+                        "value": 30,
                         "framework": "iso_50001",
                         "margin_pct": null
                     },
@@ -2750,9 +3105,9 @@
                         "target": 40,
                         "evidence": "instrument_register",
                         "framework_title": "ISO 50001:2018 energy management",
-                        "value": 64,
+                        "value": 69,
                         "framework": "iso_50001",
-                        "margin_pct": 60
+                        "margin_pct": 72.5
                     }
                 ],
                 "at_risk": 0,
@@ -2775,9 +3130,9 @@
                         "target": 5,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 2.709607902877662,
+                        "value": 2.717252142376749,
                         "framework": "iso_14001",
-                        "margin_pct": 45.80784194244676
+                        "margin_pct": 45.65495715246502
                     },
                     {
                         "title": "Emissions monitoring",
@@ -2790,9 +3145,9 @@
                         "target": 30,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 21.78400165217183,
+                        "value": 21.79517898531,
                         "framework": "iso_14001",
-                        "margin_pct": 27.386661159427227
+                        "margin_pct": 27.349403382300004
                     },
                     {
                         "title": "Waste management",
@@ -2805,9 +3160,9 @@
                         "target": 1,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 0.49978147363553443,
+                        "value": 0.49854872878834094,
                         "framework": "iso_14001",
-                        "margin_pct": 50.02185263644656
+                        "margin_pct": 50.1451271211659
                     },
                     {
                         "title": "Water balance and discharge",
@@ -2820,9 +3175,9 @@
                         "target": 8,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 3.3949337159164967,
+                        "value": 3.3806042948258557,
                         "framework": "iso_14001",
-                        "margin_pct": 57.56332855104379
+                        "margin_pct": 57.7424463146768
                     },
                     {
                         "title": "Emergency preparedness",
@@ -2835,9 +3190,9 @@
                         "target": 5.6,
                         "evidence": "kpi_report",
                         "framework_title": "ISO 14001:2015 environmental management",
-                        "value": 6.401000831171673,
+                        "value": 6.396032849648134,
                         "framework": "iso_14001",
-                        "margin_pct": 14.303586270922734
+                        "margin_pct": 14.214872315145259
                     }
                 ],
                 "at_risk": 0,
@@ -2860,9 +3215,9 @@
                         "target": 5,
                         "evidence": "kpi_report",
                         "framework_title": "EU Industrial Emissions Directive 2010/75",
-                        "value": 2.709607902877662,
+                        "value": 2.717252142376749,
                         "framework": "eu_ied",
-                        "margin_pct": 45.80784194244676
+                        "margin_pct": 45.65495715246502
                     },
                     {
                         "title": "Energy efficiency of BAT",
@@ -2875,9 +3230,9 @@
                         "target": 12.5,
                         "evidence": "kpi_report",
                         "framework_title": "EU Industrial Emissions Directive 2010/75",
-                        "value": 2.015020778751072,
+                        "value": 2.0070074736212122,
                         "framework": "eu_ied",
-                        "margin_pct": 83.87983376999142
+                        "margin_pct": 83.94394021103031
                     },
                     {
                         "title": "Continuous monitoring",
@@ -2890,9 +3245,9 @@
                         "target": 98,
                         "evidence": "quality_register",
                         "framework_title": "EU Industrial Emissions Directive 2010/75",
-                        "value": 99.81949200913239,
+                        "value": 99.80957580570445,
                         "framework": "eu_ied",
-                        "margin_pct": 1.856624499114683
+                        "margin_pct": 1.8465059241882193
                     },
                     {
                         "title": "Waste management plan",
@@ -2905,9 +3260,9 @@
                         "target": 1,
                         "evidence": "kpi_report",
                         "framework_title": "EU Industrial Emissions Directive 2010/75",
-                        "value": 0.49978147363553443,
+                        "value": 0.49854872878834094,
                         "framework": "eu_ied",
-                        "margin_pct": 50.02185263644656
+                        "margin_pct": 50.1451271211659
                     }
                 ],
                 "at_risk": 0,
@@ -2915,7 +3270,7 @@
                 "clauses": 4
             }
         },
-        "clause_count": 37
+        "clause_count": 42
     },
     "register": [
         {
@@ -2929,9 +3284,9 @@
             "target": 12.5,
             "evidence": "kpi_report",
             "framework_title": "ISO 50001:2018 energy management",
-            "value": 2.015020778751072,
+            "value": 2.0070074736212122,
             "framework": "iso_50001",
-            "margin_pct": 83.87983376999142
+            "margin_pct": 83.94394021103031
         },
         {
             "title": "Energy performance indicator",
@@ -2944,9 +3299,9 @@
             "target": 100,
             "evidence": "kpi_report",
             "framework_title": "ISO 50001:2018 energy management",
-            "value": 16.120166230008575,
+            "value": 16.056059788969698,
             "framework": "iso_50001",
-            "margin_pct": 83.87983376999142
+            "margin_pct": 83.94394021103031
         },
         {
             "title": "Baseline data quality",
@@ -2959,9 +3314,9 @@
             "target": 98,
             "evidence": "quality_register",
             "framework_title": "ISO 50001:2018 energy management",
-            "value": 99.81949200913239,
+            "value": 99.80957580570445,
             "framework": "iso_50001",
-            "margin_pct": 1.856624499114683
+            "margin_pct": 1.8465059241882193
         },
         {
             "title": "Objectives and targets",
@@ -2974,9 +3329,9 @@
             "target": 70,
             "evidence": "target_register",
             "framework_title": "ISO 50001:2018 energy management",
-            "value": 85,
+            "value": 89.28571428571429,
             "framework": "iso_50001",
-            "margin_pct": 21.428571428571427
+            "margin_pct": 27.55102040816327
         },
         {
             "title": "Operational control",
@@ -2989,7 +3344,7 @@
             "target": 0,
             "evidence": "diagnostics_register",
             "framework_title": "ISO 50001:2018 energy management",
-            "value": 29,
+            "value": 30,
             "framework": "iso_50001",
             "margin_pct": null
         },
@@ -3004,9 +3359,9 @@
             "target": 40,
             "evidence": "instrument_register",
             "framework_title": "ISO 50001:2018 energy management",
-            "value": 64,
+            "value": 69,
             "framework": "iso_50001",
-            "margin_pct": 60
+            "margin_pct": 72.5
         },
         {
             "title": "Significant environmental aspects",
@@ -3019,9 +3374,9 @@
             "target": 5,
             "evidence": "kpi_report",
             "framework_title": "ISO 14001:2015 environmental management",
-            "value": 2.709607902877662,
+            "value": 2.717252142376749,
             "framework": "iso_14001",
-            "margin_pct": 45.80784194244676
+            "margin_pct": 45.65495715246502
         },
         {
             "title": "Emissions monitoring",
@@ -3034,9 +3389,9 @@
             "target": 30,
             "evidence": "kpi_report",
             "framework_title": "ISO 14001:2015 environmental management",
-            "value": 21.78400165217183,
+            "value": 21.79517898531,
             "framework": "iso_14001",
-            "margin_pct": 27.386661159427227
+            "margin_pct": 27.349403382300004
         },
         {
             "title": "Waste management",
@@ -3049,9 +3404,9 @@
             "target": 1,
             "evidence": "kpi_report",
             "framework_title": "ISO 14001:2015 environmental management",
-            "value": 0.49978147363553443,
+            "value": 0.49854872878834094,
             "framework": "iso_14001",
-            "margin_pct": 50.02185263644656
+            "margin_pct": 50.1451271211659
         },
         {
             "title": "Water balance and discharge",
@@ -3064,9 +3419,9 @@
             "target": 8,
             "evidence": "kpi_report",
             "framework_title": "ISO 14001:2015 environmental management",
-            "value": 3.3949337159164967,
+            "value": 3.3806042948258557,
             "framework": "iso_14001",
-            "margin_pct": 57.56332855104379
+            "margin_pct": 57.7424463146768
         },
         {
             "title": "Emergency preparedness",
@@ -3079,9 +3434,9 @@
             "target": 5.6,
             "evidence": "kpi_report",
             "framework_title": "ISO 14001:2015 environmental management",
-            "value": 6.401000831171673,
+            "value": 6.396032849648134,
             "framework": "iso_14001",
-            "margin_pct": 14.303586270922734
+            "margin_pct": 14.214872315145259
         },
         {
             "title": "Water use review",
@@ -3094,9 +3449,9 @@
             "target": 8,
             "evidence": "kpi_report",
             "framework_title": "ISO 46001:2019 water efficiency",
-            "value": 3.3949337159164967,
+            "value": 3.3806042948258557,
             "framework": "iso_46001",
-            "margin_pct": 57.56332855104379
+            "margin_pct": 57.7424463146768
         },
         {
             "title": "Water reuse",
@@ -3109,9 +3464,9 @@
             "target": 65,
             "evidence": "kpi_report",
             "framework_title": "ISO 46001:2019 water efficiency",
-            "value": 70.34063981307024,
+            "value": 70.3240689832943,
             "framework": "iso_46001",
-            "margin_pct": 8.216368943184985
+            "margin_pct": 8.190875358914301
         },
         {
             "title": "Effluent quality",
@@ -3124,9 +3479,9 @@
             "target": 8.5,
             "evidence": "kpi_report",
             "framework_title": "ISO 46001:2019 water efficiency",
-            "value": 7.399313350570335,
+            "value": 7.399771304448648,
             "framework": "iso_46001",
-            "margin_pct": 12.949254699172531
+            "margin_pct": 12.943867006486494
         },
         {
             "title": "Product specification",
@@ -3139,9 +3494,9 @@
             "target": 17.4,
             "evidence": "kpi_report",
             "framework_title": "ISO 9001:2015 quality management",
-            "value": 18.140946841076513,
+            "value": 18.14239313739263,
             "framework": "iso_9001",
-            "margin_pct": 4.2583151786006574
+            "margin_pct": 4.266627226394439
         },
         {
             "title": "Product moisture",
@@ -3154,9 +3509,9 @@
             "target": 2,
             "evidence": "kpi_report",
             "framework_title": "ISO 9001:2015 quality management",
-            "value": 1.7505109309302112,
+            "value": 1.7522987109054644,
             "framework": "iso_9001",
-            "margin_pct": 12.474453453489442
+            "margin_pct": 12.38506445472678
         },
         {
             "title": "Product solubility",
@@ -3169,9 +3524,9 @@
             "target": 85,
             "evidence": "kpi_report",
             "framework_title": "ISO 9001:2015 quality management",
-            "value": 88.49703578229271,
+            "value": 88.505763552991,
             "framework": "iso_9001",
-            "margin_pct": 4.114159743873779
+            "margin_pct": 4.124427709401175
         },
         {
             "title": "Control of production",
@@ -3184,9 +3539,69 @@
             "target": 50.5,
             "evidence": "kpi_report",
             "framework_title": "ISO 9001:2015 quality management",
-            "value": 55.852585514148224,
+            "value": 55.85244380353741,
             "framework": "iso_9001",
-            "margin_pct": 10.599179235937077
+            "margin_pct": 10.598898620866162
+        },
+        {
+            "title": "Merchant acid specification",
+            "comparator": "le",
+            "metric": "acid_so4",
+            "basis": "the sulphate of the merchant acid is the first limit of the traded grade",
+            "clause": "acid_specification",
+            "status": "compliant",
+            "unit": "wt_pct",
+            "target": 1.5,
+            "evidence": "kpi_report",
+            "framework_title": "ISO 9001:2015 quality management",
+            "value": 1.1641849234992954,
+            "framework": "iso_9001",
+            "margin_pct": 22.38767176671364
+        },
+        {
+            "title": "Fluorine of the merchant acid",
+            "comparator": "le",
+            "metric": "acid_f",
+            "basis": "fluorine above the specification corrodes the storage and the customer's plant",
+            "clause": "acid_fluorine",
+            "status": "compliant",
+            "unit": "wt_pct",
+            "target": 0.5,
+            "evidence": "kpi_report",
+            "framework_title": "ISO 9001:2015 quality management",
+            "value": 0.35326721974317093,
+            "framework": "iso_9001",
+            "margin_pct": 29.346556051365813
+        },
+        {
+            "title": "Solids of the merchant acid",
+            "comparator": "le",
+            "metric": "acid_solids",
+            "basis": "the fines the filters let through settle in the storage tanks",
+            "clause": "acid_solids",
+            "status": "compliant",
+            "unit": "wt_pct",
+            "target": 0.5,
+            "evidence": "kpi_report",
+            "framework_title": "ISO 9001:2015 quality management",
+            "value": 0.29432599185109604,
+            "framework": "iso_9001",
+            "margin_pct": 41.134801629780796
+        },
+        {
+            "title": "Yield of the acid route",
+            "comparator": "ge",
+            "metric": "acid_p2o5_yield",
+            "basis": "the P2O5 that reaches the filters over the P2O5 fed to the attack",
+            "clause": "acid_yield",
+            "status": "compliant",
+            "unit": "pct",
+            "target": 96.5,
+            "evidence": "kpi_report",
+            "framework_title": "ISO 9001:2015 quality management",
+            "value": 97.68139539950859,
+            "framework": "iso_9001",
+            "margin_pct": 1.2242439373145992
         },
         {
             "title": "Scope 1 quantification",
@@ -3199,9 +3614,9 @@
             "target": 48,
             "evidence": "carbon_inventory",
             "framework_title": "GHG Protocol corporate standard",
-            "value": 36338.02137668385,
+            "value": 36379.54479519054,
             "framework": "ghg_protocol",
-            "margin_pct": -75604.2112014247
+            "margin_pct": -75690.71832331362
         },
         {
             "title": "Scope 2 quantification",
@@ -3214,9 +3629,9 @@
             "target": 240,
             "evidence": "carbon_inventory",
             "framework_title": "GHG Protocol corporate standard",
-            "value": 21927.799564865552,
+            "value": 21954.67389995146,
             "framework": "ghg_protocol",
-            "margin_pct": -9036.583152027313
+            "margin_pct": -9047.780791646443
         },
         {
             "title": "Emissions intensity",
@@ -3229,9 +3644,9 @@
             "target": 145,
             "evidence": "carbon_inventory",
             "framework_title": "GHG Protocol corporate standard",
-            "value": 56.106953745474236,
+            "value": 55.98016094551436,
             "framework": "ghg_protocol",
-            "margin_pct": 61.305549141052246
+            "margin_pct": 61.3929924513694
         },
         {
             "title": "Emission factor register",
@@ -3259,9 +3674,9 @@
             "target": 5,
             "evidence": "kpi_report",
             "framework_title": "EU Industrial Emissions Directive 2010/75",
-            "value": 2.709607902877662,
+            "value": 2.717252142376749,
             "framework": "eu_ied",
-            "margin_pct": 45.80784194244676
+            "margin_pct": 45.65495715246502
         },
         {
             "title": "Energy efficiency of BAT",
@@ -3274,9 +3689,9 @@
             "target": 12.5,
             "evidence": "kpi_report",
             "framework_title": "EU Industrial Emissions Directive 2010/75",
-            "value": 2.015020778751072,
+            "value": 2.0070074736212122,
             "framework": "eu_ied",
-            "margin_pct": 83.87983376999142
+            "margin_pct": 83.94394021103031
         },
         {
             "title": "Continuous monitoring",
@@ -3289,9 +3704,9 @@
             "target": 98,
             "evidence": "quality_register",
             "framework_title": "EU Industrial Emissions Directive 2010/75",
-            "value": 99.81949200913239,
+            "value": 99.80957580570445,
             "framework": "eu_ied",
-            "margin_pct": 1.856624499114683
+            "margin_pct": 1.8465059241882193
         },
         {
             "title": "Waste management plan",
@@ -3304,9 +3719,9 @@
             "target": 1,
             "evidence": "kpi_report",
             "framework_title": "EU Industrial Emissions Directive 2010/75",
-            "value": 0.49978147363553443,
+            "value": 0.49854872878834094,
             "framework": "eu_ied",
-            "margin_pct": 50.02185263644656
+            "margin_pct": 50.1451271211659
         },
         {
             "title": "Fluoride emission limit",
@@ -3319,9 +3734,9 @@
             "target": 5,
             "evidence": "kpi_report",
             "framework_title": "US EPA 40 CFR 63 subpart AA",
-            "value": 2.709607902877662,
+            "value": 2.717252142376749,
             "framework": "us_epa_40cfr63",
-            "margin_pct": 45.80784194244676
+            "margin_pct": 45.65495715246502
         },
         {
             "title": "Scrubber operating limit",
@@ -3334,9 +3749,9 @@
             "target": 5.6,
             "evidence": "kpi_report",
             "framework_title": "US EPA 40 CFR 63 subpart AA",
-            "value": 6.401000831171673,
+            "value": 6.396032849648134,
             "framework": "us_epa_40cfr63",
-            "margin_pct": 14.303586270922734
+            "margin_pct": 14.214872315145259
         },
         {
             "title": "Record keeping",
@@ -3349,9 +3764,9 @@
             "target": 98,
             "evidence": "quality_register",
             "framework_title": "US EPA 40 CFR 63 subpart AA",
-            "value": 99.81949200913239,
+            "value": 99.80957580570445,
             "framework": "us_epa_40cfr63",
-            "margin_pct": 1.856624499114683
+            "margin_pct": 1.8465059241882193
         },
         {
             "title": "P2O5 recovery of the route",
@@ -3364,9 +3779,9 @@
             "target": 94,
             "evidence": "kpi_report",
             "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-            "value": 83.82511295472499,
+            "value": 83.6510821846091,
             "framework": "ifa_bat",
-            "margin_pct": -10.824347920505334
+            "margin_pct": -11.0094870376499
         },
         {
             "title": "Specific acid demand",
@@ -3379,9 +3794,24 @@
             "target": 2.85,
             "evidence": "kpi_report",
             "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-            "value": 2.829330791854544,
+            "value": 2.823433949113338,
             "framework": "ifa_bat",
-            "margin_pct": 0.7252353735247807
+            "margin_pct": 0.932142136374116
+        },
+        {
+            "title": "Steam of the acid concentration",
+            "comparator": "le",
+            "metric": "acid_steam",
+            "basis": "steam per tonne of P2O5 concentrated: the largest energy item of the acid route",
+            "clause": "acid_steam",
+            "status": "compliant",
+            "unit": "t_ph",
+            "target": 0.62,
+            "evidence": "kpi_report",
+            "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
+            "value": 0.4114923425935953,
+            "framework": "ifa_bat",
+            "margin_pct": 33.63026732361366
         },
         {
             "title": "Water-soluble loss",
@@ -3394,9 +3824,9 @@
             "target": 2,
             "evidence": "kpi_report",
             "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-            "value": 2.33549971579914,
+            "value": 2.3186046004914065,
             "framework": "ifa_bat",
-            "margin_pct": -16.774985789956997
+            "margin_pct": -15.930230024570324
         },
         {
             "title": "Fluorine recovery",
@@ -3424,9 +3854,9 @@
             "target": 170,
             "evidence": "kpi_report",
             "framework_title": "IFA/EFMA BAT for phosphate fertilisers",
-            "value": 150.5547898488827,
+            "value": 150.60178958821658,
             "framework": "ifa_bat",
-            "margin_pct": 11.438358912421938
+            "margin_pct": 11.410712006931426
         },
         {
             "title": "Gypsum quality to the stack",
@@ -3439,9 +3869,9 @@
             "target": 1,
             "evidence": "kpi_report",
             "framework_title": "Phosphogypsum stack management code",
-            "value": 0.49978147363553443,
+            "value": 0.49854872878834094,
             "framework": "phosphogypsum_code",
-            "margin_pct": 50.02185263644656
+            "margin_pct": 50.1451271211659
         },
         {
             "title": "Water return to the plant",
@@ -3454,9 +3884,9 @@
             "target": 65,
             "evidence": "kpi_report",
             "framework_title": "Phosphogypsum stack management code",
-            "value": 70.34063981307024,
+            "value": 70.3240689832943,
             "framework": "phosphogypsum_code",
-            "margin_pct": 8.216368943184985
+            "margin_pct": 8.190875358914301
         },
         {
             "title": "Dust control on the stack",
@@ -3469,9 +3899,9 @@
             "target": 30,
             "evidence": "kpi_report",
             "framework_title": "Phosphogypsum stack management code",
-            "value": 21.78400165217183,
+            "value": 21.79517898531,
             "framework": "phosphogypsum_code",
-            "margin_pct": 27.386661159427227
+            "margin_pct": 27.349403382300004
         }
     ]
 }

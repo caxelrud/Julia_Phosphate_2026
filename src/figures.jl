@@ -386,7 +386,54 @@ function figure_set(c::Campaign, kpi::Dict{Symbol,Any}, fdd::Dict{Symbol,Any},
     if optimization !== nothing
         add(:blend, fig_blend(optimization[:blend]), "Ore blend the optimiser chose")
     end
+    if haskey(kpi, :acid)
+        a = kpi[:acid]
+        add(:acid_balance, fig_acid_balance(a[:balance]),
+            "Where the P2O5 of the attack goes: the acid route and the fertiliser route")
+        add(:acid_quality, fig_acid_quality(a[:quality][:rows]),
+            "The merchant acid against the specification of the traded grade")
+        add(:acid_cost, fig_acid_cost(a[:cost][:rows]),
+            "Cost of a tonne of P2O5 as merchant acid, item by item")
+    end
     return figs
+end
+
+"""Where the P2O5 of the attack goes: the merchant acid, the fertiliser route, the cake."""
+function fig_acid_balance(rows::Vector{Dict{Symbol,Any}})
+    isempty(rows) && return nothing
+    labels = [to_string(r[:destination]) for r in rows]
+    values = [r[:p2o5_t] / 1000.0 for r in rows]
+    p = Plots.bar(labels, values; legend = false, ylabel = "kt P2O5",
+        title = string("Where the P2O5 of the attack goes: ",
+            round(sum(values), digits = 1), " kt"),
+        color = [AREA_COLOURS[:evaporation], AREA_COLOURS[:granulation],
+            AREA_COLOURS[:filtration], AREA_COLOURS[:utilities]],
+        bar_width = 0.6, xrotation = 20)
+    return figure_theme(p)
+end
+
+"""The merchant acid against its specification: the margin each limit has left."""
+function fig_acid_quality(rows::Vector{Dict{Symbol,Any}})
+    isempty(rows) && return nothing
+    labels = [string(to_string(r[:spec]), " (", code_string(r[:unit]), ")") for r in rows]
+    margins = [r[:margin_pct] for r in rows]
+    colours = [get(STATUS_COLOURS, r[:status], "#7f8c8d") for r in rows]
+    p = Plots.bar(labels, margins; legend = false, ylabel = "margin to the specification (%)",
+        title = "Merchant acid against its specification", color = colours,
+        bar_width = 0.6, xrotation = 25)
+    p = Plots.hline!(p, [0.0]; label = "", color = "#333333", linestyle = :dash, linewidth = 1.2)
+    return figure_theme(p)
+end
+
+"""Cost of a tonne of P2O5 as merchant acid, item by item."""
+function fig_acid_cost(rows::Vector{Dict{Symbol,Any}})
+    isempty(rows) && return nothing
+    labels = [to_string(r[:item]) for r in rows]
+    values = [r[:per_t_p2o5] for r in rows]
+    p = Plots.bar(labels, values; legend = false, ylabel = "USD per t P2O5",
+        title = string("Cost of a tonne of P2O5 as merchant acid: ", round(sum(values), digits = 0),
+            " USD/t"), color = AREA_COLOURS[:acid_plant], bar_width = 0.6, xrotation = 45)
+    return figure_theme(p)
 end
 
 """The blend the optimiser chose, body by body."""

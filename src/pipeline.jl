@@ -41,7 +41,7 @@ Base.@kwdef struct PipelineConfig
     export_data::Bool = true
     render_pdf::Bool = true
     chrome::Union{Nothing,String} = nothing
-    groups::Vector{Symbol} = [:all, :twin, :control, :sensors, :diagnostics, :compliance]
+    groups::Vector{Symbol} = [:all, :acid, :twin, :control, :sensors, :diagnostics, :compliance]
 end
 
 """Build a `PipelineConfig` from a symbol-keyed dictionary (for scripts and notebooks)."""
@@ -171,6 +171,7 @@ function bundle_summary(b::Dict{Symbol,Any})
                     :max_residual => b[:twin][:max_residual],
                     :validity_score => b[:alignment] === nothing ? NaN :
                                        b[:alignment][:validity_score]),
+        :acid => kpi[:acid][:summary],
         :control => b[:mpc] === nothing ? nothing : get(b[:mpc], :summary, b[:mpc]),
         :optimization => b[:optimization] === nothing ? nothing :
                          get(b[:optimization], :summary, b[:optimization]),
@@ -210,6 +211,14 @@ function export_bundle(b::Dict{Symbol,Any}; cfg::PipelineConfig = b[:config],
                 :evidence])
         write_table_csv(joinpath(data_dir, "sensor_register.csv"), b[:soft][:rows],
             [:sensor, :target, :kind, :unit, :r2, :rmse, :bias, :rows, :in_domain_pct, :status])
+        acid = b[:kpi][:acid]
+        write_table_csv(joinpath(data_dir, "acid_balance.csv"), acid[:balance],
+            [:destination, :p2o5_t, :share_pct, :note])
+        write_table_csv(joinpath(data_dir, "acid_quality.csv"), acid[:quality][:rows],
+            [:spec, :tag, :value, :limit, :unit, :comparator, :margin_pct, :status, :basis])
+        write_table_csv(joinpath(data_dir, "acid_consumption.csv"), acid[:consumption],
+            [:metric, :value, :unit, :basis, :note])
+        write_json_payload(joinpath(data_dir, "acid.json"), acid)
         if b[:twin] !== nothing
             write_table_csv(joinpath(data_dir, "steady_state.csv"), b[:twin][:table],
                 [:variable, :value, :unit, :description])

@@ -245,8 +245,8 @@ of them infers a variable that is measured slowly (in a laboratory), intermitten
 or not at all, from instruments that report every hour.
 """
 const PROCESS_SENSOR_SPECS = (
-    (:merchant_acid_strength, :STRONG_ACID_P2O5, [:EVAP_DENSITY, :EVAP_TEMP, :EVAP_VACUUM],
-        :wt_pct, "the density and the temperature of the acid against its strength"),
+    (:merchant_acid_strength, :STRONG_ACID_P2O5, [:EVAP_TEMP, :STEAM_FLOW, :EVAP_VACUUM],
+        :wt_pct, "the boiling point of the acid, the vacuum and the steam: the virtual analyser of the evaporator house"),
     (:weak_acid_strength, :WEAK_ACID_P2O5, [:SLURRY_SG, :ATTACK_TEMP, :FREE_SO4, :WASH_WATER_FLOW],
         :wt_pct, "the slurry specific gravity carries the strength of the filtrate"),
     (:cake_free_p2o5, :GYPSUM_FREE_P2O5, [:FILTER_RATE, :FILTER_VACUUM, :WASH_WATER_FLOW,

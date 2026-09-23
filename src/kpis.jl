@@ -35,6 +35,22 @@ const PERFORMANCE_TARGETS = Dict{Symbol,NamedTuple}(
         basis = "water-soluble P2O5 lost with the gypsum, per cent of the P2O5 fed"),
     :acid_strength => (target = 52.0, unit = :wt_pct, comparator = :ge,
         basis = "P2O5 in the merchant acid"),
+    :acid_p2o5_yield => (target = 96.5, unit = :pct, comparator = :ge,
+        basis = "P2O5 reaching the filters over the P2O5 fed to the attack"),
+    :acid_concentration_yield => (target = 97.0, unit = :pct, comparator = :ge,
+        basis = "P2O5 in the merchant acid over the P2O5 the evaporators concentrate: a closure check at three per cent of meter slack"),
+    :acid_so4 => (target = 1.50, unit = :wt_pct, comparator = :le,
+        basis = "sulphate of the merchant acid: the specification limit of the grade"),
+    :acid_f => (target = 0.50, unit = :wt_pct, comparator = :le,
+        basis = "fluorine of the merchant acid: the specification limit of the grade"),
+    :acid_solids => (target = 0.50, unit = :wt_pct, comparator = :le,
+        basis = "solids of the merchant acid: the specification limit of the grade"),
+    :acid_steam => (target = 0.62, unit = :t_ph, comparator = :le,
+        basis = "t steam per t P2O5 concentrated, at an economy of 3.0"),
+    :acid_electricity => (target = 75.0, unit = :kwh_per_t, comparator = :le,
+        basis = "kWh per t P2O5 concentrated, blower of the acid plant and evaporator set"),
+    :acid_cost => (target = 600.0, unit = :usd_per_t, comparator = :le,
+        basis = "variable cost per t P2O5 sold as merchant acid: feed by acid share, concentration in full"),
     :product_moisture => (target = 2.00, unit = :wt_pct, comparator = :le,
         basis = "moisture of the bagged product"),
     :product_wsp => (target = 85.0, unit = :wt_pct, comparator = :ge,
@@ -222,6 +238,12 @@ function site_kpis(c::Campaign; mask::AbstractVector{Bool} = mode_mask(c),
         electricity_kwh, fuel_gj, water_m3, gypsum_t, product_t, p2o5_product)
     revenue = product_t * ECONOMICS[:dap_per_t] + merchant_t * ECONOMICS[:merchant_acid_per_t_p2o5] *
               strength / 100.0
+    ## ---- the acid route, evaluated as a product in its own right
+    reagent_t = masked_sum(c, :REAGENT_FLOW, m) / 1000.0
+    acid = acid_evaluation(c, m; design = design, rock_t = rock_t, reagent_t = reagent_t,
+        p2o5_fed = p2o5_fed, strength = strength, merchant_t = merchant_t, steam_t = steam_t,
+        sulphur_t = sulphur_t, acid_t = acid_t, water_m3 = water_m3, gypsum_t = gypsum_t,
+        gypsum_free_p2o5 = free_p2o5, hours = hours)
     ## ---- targets
     targets = Dict{Symbol,Any}()
     metric_values = Dict{Symbol,Any}(
@@ -244,6 +266,14 @@ function site_kpis(c::Campaign; mask::AbstractVector{Bool} = mode_mask(c),
         :completeness => book_completeness(book),
         :availability => 100.0 * (total_hours - outage_hours) / max(total_hours, 1),
         :variable_cost => product_t > 0 ? (sum(values(cost)) * 1.0e3) / product_t : NaN,
+        :acid_p2o5_yield => acid[:summary][:filtration_yield_pct],
+        :acid_concentration_yield => acid[:summary][:concentration_yield_pct],
+        :acid_so4 => get(acid[:quality][:values], :so4, NaN),
+        :acid_f => get(acid[:quality][:values], :f, NaN),
+        :acid_solids => get(acid[:quality][:values], :solids, NaN),
+        :acid_steam => acid[:summary][:steam_per_p2o5],
+        :acid_electricity => acid[:summary][:electricity_per_p2o5],
+        :acid_cost => acid[:summary][:cost_per_t_p2o5],
         :carbon_intensity => p2o5_fed > 0 ? 1000.0 * (scope_1 + scope_2) / p2o5_fed : NaN)
     for (metric, value) in metric_values
         targets[metric] = target_row(metric, value)
@@ -262,6 +292,7 @@ function site_kpis(c::Campaign; mask::AbstractVector{Bool} = mode_mask(c),
             :mode_split => mode_split(c), :baseline_months => baseline_months),
         :meta => Dict{Symbol,Any}(:source => :synthetic_campaign, :seed => c.meta[:seed],
             :generated_at => c.meta[:generated_at], :basis => c.meta[:basis]),
+        :acid => acid,
         :ore => Dict{Symbol,Any}(:rom_t => rom_t, :rock_t => rock_t, :concentrate_t => concentrate_t,
             :feed_grade => feed_grade, :concentrate_grade => conc_grade,
             :tailings_grade => tail_grade, :p2o5_ore => p2o5_ore, :p2o5_feed => p2o5_concentrate,
@@ -271,7 +302,7 @@ function site_kpis(c::Campaign; mask::AbstractVector{Bool} = mode_mask(c),
             :grind_p80 => masked_mean(c, :CYCLONE_P80, m),
             :slurry_density => masked_mean(c, :SLURRY_DENSITY, m),
             :mill_kwh => mill_kwh, :mill_kwh_per_t => rom_t > 0 ? mill_kwh / rom_t : NaN,
-            :reagent_t => masked_sum(c, :REAGENT_FLOW, m) / 1000.0,
+            :reagent_t => reagent_t,
             :reagent_kg_per_t => rom_t > 0 ? masked_sum(c, :REAGENT_FLOW, m) / rom_t : NaN,
             :mill_sound_db => masked_mean(c, :MILL_SOUND_DB, m),
             :mass_balance_residual_pct => p2o5_ore > 0 ?
@@ -477,6 +508,199 @@ function evaporated_water(c::Campaign, m, p2o5_fed, strength)
     x_out = max(strength / 100.0, 1.0e-6)
     (x_in <= 0 || x_out <= x_in) && return NaN
     return p2o5_acid * (1.0 / x_in - 1.0 / x_out)
+end
+
+## ---- the acid route --------------------------------------------------------------
+
+"""Instrument that evidences one row of the acid specification."""
+ACID_SPECS_TAG(spec::Symbol) = get(ACID_SPEC_TAGS, spec, :none)
+
+"""A figure per tonne of P2O5, `NaN` when the acid production is zero."""
+per_p2o5(value, p2o5) = p2o5 > 0 ? value / p2o5 : NaN
+
+"""
+    acid_quality(campaign, mask) -> Dict{Symbol,Any}
+
+The merchant acid against its specification, row by row: what the instrument of each
+row of [`ACID_SPECIFICATIONS`](@ref) recorded over the window, the limit, the margin
+and the verdict. The status of the acid is the worst row, so a single failure is a
+failed specification rather than an average that hides it.
+"""
+function acid_quality(c::Campaign, mask::AbstractVector{Bool})
+    rows = Vector{Dict{Symbol,Any}}()
+    values = Dict{Symbol,Float64}()
+    for spec in sort(collect(keys(ACID_SPECIFICATIONS)); by = String)
+        s = ACID_SPECIFICATIONS[spec]
+        tag = ACID_SPECS_TAG(spec)
+        value = tag === :none ? NaN : masked_mean(c, tag, mask)
+        values[spec] = value
+        push!(rows, Dict{Symbol,Any}(:spec => spec, :tag => tag, :value => value,
+            :limit => s.limit, :unit => s.unit, :comparator => s.comparator,
+            :margin_pct => target_margin(value, s.limit, s.comparator),
+            :status => target_status(value, s.limit, s.comparator), :basis => s.basis))
+    end
+    statuses = [r[:status] for r in rows]
+    status = :noncompliant in statuses ? :noncompliant :
+             :at_risk in statuses ? :at_risk :
+             all(==(:not_assessed), statuses) ? :not_assessed : :compliant
+    failures = [r[:spec] for r in rows if r[:status] === :noncompliant]
+    return Dict{Symbol,Any}(:values => values, :rows => rows, :failures => failures,
+        :specification => ACID_SPECIFICATIONS, :status => status,
+        :grade => acid_grade_of(get(values, :p2o5, 0.0)),
+        :basis => "the merchant acid against the specification of the traded grade")
+end
+
+"""
+    acid_evaluation(campaign, mask; design, ...) -> Dict{Symbol,Any}
+
+The evaluation of the acid route as a product in its own right: the P2O5 balance from
+the attack to the merchant acid, the yield of the filtration and of the concentration,
+the specification of the grade, what a tonne of P2O5 costs as acid and what the acid
+is worth. Every figure is read from the historian, so the acid evaluation cannot drift
+away from the plant it describes.
+"""
+function acid_evaluation(c::Campaign, m; design::PlantDesign = c.design, rock_t::Real = 0.0,
+    reagent_t::Real = 0.0, p2o5_fed::Real = 0.0, strength::Real = NaN, merchant_t::Real = 0.0,
+    steam_t::Real = 0.0, sulphur_t::Real = 0.0, acid_t::Real = 0.0, water_m3::Real = 0.0,
+    gypsum_t::Real = 0.0, gypsum_free_p2o5::Real = 0.0, hours::Integer = 0)
+    ## the P2O5 that reaches the filters is what the acid plant can concentrate
+    gypsum_loss = gypsum_t * gypsum_free_p2o5 / 100.0
+    to_filters = max(p2o5_fed - gypsum_loss, 0.0)
+    merchant_p2o5 = merchant_t * strength / 100.0
+    share = to_filters > 0 ? clamp(merchant_p2o5 / to_filters, 0.0, 1.0) : 0.0
+    merchant_h3po4 = merchant_p2o5 * H3PO4_PER_P2O5
+    grade_h3po4 = merchant_t > 0 ? 100.0 * merchant_h3po4 / merchant_t : NaN
+    ## the concentration step: the water the evaporators had to remove, and the economy
+    weak_strength = masked_mean(c, :WEAK_ACID_P2O5, m)
+    feed_m3 = masked_sum(c, :EVAP_FEED_FLOW, m)
+    feed_t = feed_m3 * acid_density(weak_strength, masked_mean(c, :EVAP_TEMP, m))
+    x_in = weak_strength / 100.0
+    x_out = max(strength / 100.0, x_in + 1.0e-6)
+    water_evaporated = feed_t * (1.0 - x_in / x_out)
+    economy = steam_t > 0 ? water_evaporated / steam_t : NaN
+    expected_merchant = design.acid_merchant_split * to_filters
+    concentration_yield = expected_merchant > 0 ? 100.0 * merchant_p2o5 / expected_merchant : NaN
+    ## the power the acid train carries: the blower of the plant and the evaporator set
+    electricity = sulphur_t * ACID_POWER_KWH_PER_T_SULPHUR + feed_m3 * ACID_POWER_KWH_PER_M3_FEED
+    ## the cost of a tonne of P2O5 as acid: the plant costs are the plant's, the feed is
+    ## allocated to the acid route by the share of the P2O5 that leaves as merchant acid
+    items = Dict{Symbol,Float64}(
+        :rock => rock_t * ECONOMICS[:rock_per_t] * share,
+        :reagents => reagent_t * ECONOMICS[:reagent_per_t] * share,
+        :sulphur => sulphur_t * ECONOMICS[:sulphur_per_t] * share,
+        :gypsum_disposal => gypsum_t * ECONOMICS[:gypsum_disposal_per_t] * share,
+        :steam => steam_t * ECONOMICS[:steam_per_t],
+        :electricity => electricity * ECONOMICS[:electricity_per_kwh],
+        :water => (feed_m3 + 0.35 * masked_sum(c, :WASH_WATER_FLOW, m) * share) *
+                  ECONOMICS[:process_water_per_m3])
+    cost_total = sum(values(items)) / 1000.0      ## k of the site currency, like the KPI cost
+    revenue = merchant_p2o5 * ECONOMICS[:merchant_acid_per_t_p2o5]
+    ## the P2O5 that did not leave as merchant acid: the fertiliser route and the losses
+    balance = [
+        Dict{Symbol,Any}(:destination => :merchant_acid, :p2o5_t => merchant_p2o5,
+            :share_pct => p2o5_fed > 0 ? 100.0 * merchant_p2o5 / p2o5_fed : NaN,
+            :note => "to the acid storage, the grade the customer buys"),
+        Dict{Symbol,Any}(:destination => :fertiliser_route,
+            :p2o5_t => max(to_filters - merchant_p2o5, 0.0),
+            :share_pct => p2o5_fed > 0 ? 100.0 * max(to_filters - merchant_p2o5, 0.0) / p2o5_fed : NaN,
+            :note => "to the granulation line as concentrated acid"),
+        Dict{Symbol,Any}(:destination => :gypsum_cake, :p2o5_t => gypsum_loss,
+            :share_pct => p2o5_fed > 0 ? 100.0 * gypsum_loss / p2o5_fed : NaN,
+            :note => "water-soluble P2O5 that left with the phosphogypsum"),
+        Dict{Symbol,Any}(:destination => :unaccounted,
+            :p2o5_t => max(p2o5_fed - merchant_p2o5 - max(to_filters - merchant_p2o5, 0.0) -
+                           gypsum_loss, 0.0),
+            :share_pct => p2o5_fed > 0 ? 100.0 * max(p2o5_fed - to_filters - gypsum_loss, 0.0) /
+                                         p2o5_fed : NaN,
+            :note => "sampling and rounding of the balance, targets zero")]
+    steps = [
+        Dict{Symbol,Any}(:step => :attack_and_filtration, :in_t => p2o5_fed, :out_t => to_filters,
+            :loss_t => gypsum_loss, :yield_pct => p2o5_fed > 0 ? 100.0 * to_filters / p2o5_fed : NaN,
+            :note => "the cake carries the free P2O5 out of the circuit"),
+        Dict{Symbol,Any}(:step => :concentration, :in_t => to_filters,
+            :out_t => design.acid_merchant_split * to_filters, :loss_t => 0.0,
+            :yield_pct => concentration_yield,
+            :note => "the closure of the evaporation against the registered merchant split"),
+        Dict{Symbol,Any}(:step => :merchant_acid, :in_t => design.acid_merchant_split * to_filters,
+            :out_t => merchant_p2o5, :loss_t => 0.0, :yield_pct => concentration_yield,
+            :note => string("the ", round(100.0 * share, digits = 1), " % of the filtered P2O5 the storage tank receives"))]
+    consumption = [
+        Dict{Symbol,Any}(:metric => :rock, :value => per_p2o5(rock_t * share, merchant_p2o5),
+            :unit => :t_ph, :basis => :per_p2o5_sold,
+            :note => "t of rock per t P2O5 sold as acid, allocated by the acid share"),
+        Dict{Symbol,Any}(:metric => :sulphuric_acid,
+            :value => per_p2o5(acid_t * share, merchant_p2o5), :unit => :t_ph,
+            :basis => :per_p2o5_sold, :note => "t of H2SO4 per t P2O5 sold as acid"),
+        Dict{Symbol,Any}(:metric => :sulphur, :value => per_p2o5(sulphur_t * share, merchant_p2o5),
+            :unit => :t_ph, :basis => :per_p2o5_sold,
+            :note => "t of sulphur burnt per t P2O5 sold as acid"),
+        Dict{Symbol,Any}(:metric => :steam, :value => per_p2o5(steam_t, to_filters),
+            :unit => :t_ph, :basis => :per_p2o5_concentrated,
+            :note => "t of steam per t P2O5 the evaporators concentrate, both products included"),
+        Dict{Symbol,Any}(:metric => :electricity, :value => per_p2o5(electricity, to_filters),
+            :unit => :kwh_per_t, :basis => :per_p2o5_concentrated,
+            :note => "kWh per t P2O5 concentrated: blower of the acid plant and evaporator set"),
+        Dict{Symbol,Any}(:metric => :water, :value => per_p2o5(feed_m3, to_filters),
+            :unit => :m3_ph, :basis => :per_p2o5_concentrated,
+            :note => "m3 of evaporator feed per t P2O5 concentrated"),
+        Dict{Symbol,Any}(:metric => :thermal_energy, :value => per_p2o5(steam_t * 2.769, to_filters),
+            :unit => :gj_per_t, :basis => :per_p2o5_concentrated,
+            :note => "GJ of steam per t P2O5 concentrated"),
+        Dict{Symbol,Any}(:metric => :gypsum, :value => per_p2o5(gypsum_t * share, merchant_p2o5),
+            :unit => :t_ph, :basis => :per_p2o5_sold, :note => "t of phosphogypsum per t P2O5")]
+    quality = acid_quality(c, m)
+    cost_rows = [Dict{Symbol,Any}(:item => k, :value => v / 1000.0, :unit => :usd,
+        :share_pct => cost_total > 0 ? 100.0 * (v / 1000.0) / cost_total : NaN,
+        :per_t_p2o5 => per_p2o5(v / 1000.0, merchant_p2o5))
+        for (k, v) in sort(collect(items); by = x -> -x[2])]
+    filtration_yield = p2o5_fed > 0 ? 100.0 * to_filters / p2o5_fed : NaN
+    targets = Dict{Symbol,Any}(m2 => target_row(m2, v) for (m2, v) in (
+        :acid_p2o5_yield => filtration_yield, :acid_concentration_yield => concentration_yield,
+        :acid_so4 => get(quality[:values], :so4, NaN), :acid_f => get(quality[:values], :f, NaN),
+        :acid_solids => get(quality[:values], :solids, NaN), :acid_strength => strength,
+        :acid_steam => per_p2o5(steam_t, to_filters),
+        :acid_electricity => per_p2o5(electricity, to_filters),
+        :acid_cost => per_p2o5(cost_total * 1000.0, merchant_p2o5)))
+    acid_statuses = [r[:status] for r in values(targets)]
+    status = quality[:status] === :noncompliant || :noncompliant in acid_statuses ? :noncompliant :
+             quality[:status] === :at_risk || :at_risk in acid_statuses ? :at_risk : :compliant
+    summary = Dict{Symbol,Any}(
+        :merchant_kt => merchant_t / 1000.0, :merchant_p2o5_kt => merchant_p2o5 / 1000.0,
+        :merchant_h3po4_kt => merchant_h3po4 / 1000.0,
+        :grade_p2o5 => strength, :grade_h3po4 => grade_h3po4,
+        :grade => acid_grade_of(strength), :share_of_filters_pct => 100.0 * share,
+        :filtration_yield_pct => filtration_yield,
+        :concentration_yield_pct => concentration_yield,
+        :water_evaporated_t => water_evaporated, :economy => economy,
+        :steam_per_p2o5 => per_p2o5(steam_t, to_filters),
+        :electricity_per_p2o5 => per_p2o5(electricity, to_filters),
+        :water_per_p2o5 => per_p2o5(feed_m3, to_filters),
+        :thermal_gj_per_p2o5 => per_p2o5(steam_t * 2.769, to_filters),
+        :cost_per_t_p2o5 => per_p2o5(cost_total * 1000.0, merchant_p2o5),
+        :cost_per_t_acid => merchant_t > 0 ? cost_total * 1000.0 / merchant_t : NaN,
+        :margin_per_t_p2o5 => per_p2o5(revenue - cost_total * 1000.0, merchant_p2o5),
+        :revenue_per_t_p2o5 => ECONOMICS[:merchant_acid_per_t_p2o5],
+        :quality_status => quality[:status], :quality_failures => quality[:failures],
+        :hours => hours, :status => status)
+    return Dict{Symbol,Any}(
+        :balance => balance, :steps => steps, :consumption => consumption,
+        :quality => quality, :targets => targets,
+        :cost => Dict{Symbol,Any}(:items => items, :rows => cost_rows,
+            :total => cost_total * 1000.0, :currency => design.site.currency,
+            :allocation_pct => 100.0 * share, :revenue => revenue * 1000.0,
+            :margin => revenue - cost_total * 1000.0,
+            :per_t_p2o5 => per_p2o5(cost_total * 1000.0, merchant_p2o5),
+            :per_t_acid => merchant_t > 0 ? cost_total * 1000.0 / merchant_t : NaN),
+        :merchant => Dict{Symbol,Any}(:acid_t => merchant_t, :acid_kt => merchant_t / 1000.0,
+            :p2o5_t => merchant_p2o5, :h3po4_t => merchant_h3po4,
+            :grade_p2o5 => strength, :grade_h3po4 => grade_h3po4,
+            :grade => acid_grade_of(strength), :filtration_yield_pct => filtration_yield,
+            :concentration_yield_pct => concentration_yield,
+            :water_evaporated_t => water_evaporated, :economy => economy,
+            :electricity_kwh => electricity, :to_filters_t => to_filters,
+            :gypsum_loss_t => gypsum_loss),
+        :summary => summary, :status => status,
+        :basis => "the historian rolled up over the operating intervals, read as the acid route")
 end
 
 """The targets of a bundle as the rows of the register table, sorted by metric."""

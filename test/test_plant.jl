@@ -31,12 +31,13 @@ end
     @test CAMPAIGN.meta[:seed] == 20260101
     @test length(CAMPAIGN.deviations) > 10
     @test all(d -> d.from_hour < d.to_hour, CAMPAIGN.deviations)
-    ## the campaign is deterministic: the same seed gives the same readings
+    ## the campaign is deterministic: the same seed gives the same readings, `NaN`s from
+    ## the injected defects included, so the comparison is the `isequal` one
     again = generate_campaign(DESIGN; days = 5, seed = 20260101)
     also = generate_campaign(DESIGN; days = 5, seed = 20260101)
-    @test again.book[:ROM_FEED].values == also.book[:ROM_FEED].values
+    @test isequal(again.book[:ROM_FEED].values, also.book[:ROM_FEED].values)
     other = generate_campaign(DESIGN; days = 5, seed = 20260102)
-    @test again.book[:ROM_FEED].values != other.book[:ROM_FEED].values
+    @test !isequal(again.book[:ROM_FEED].values, other.book[:ROM_FEED].values)
     ## the plant is massively consistent: the two-product balance of flotation closes
     m = mode_mask(CAMPAIGN)
     feed = masked_mean(CAMPAIGN, :FLOT_FEED_P2O5, m)

@@ -1,0 +1,5 @@
+destination,p2o5_t,share_pct,note
+:merchant_acid,249077.3493,23.9026,to the acid storage, the grade the customer buys
+:fertiliser_route,768813.2365,73.7788,to the granulation line as concentrated acid
+:gypsum_cake,24161.0573,2.3186,water-soluble P2O5 that left with the phosphogypsum
+:unaccounted,0.0,0.0,sampling and rounding of the balance, targets zero
