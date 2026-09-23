@@ -1,0 +1,19 @@
+{
+    "weak_acid_p2o5": 28.000000000000004,
+    "rock_p2o5": 28.999999999999996,
+    "ore_body": "khouribga",
+    "grind_p80_um": 150,
+    "digestion_temperature_k": 351.15,
+    "revision": "A",
+    "design_ore_tph": 601.4434643143545,
+    "acid_plant_capacity_tpd": 3600,
+    "flotation_recovery": 86,
+    "site": "Atlas Phosphate Complex",
+    "design_hours_year": 8000,
+    "capacity_t_p2o5_year": 1200000,
+    "currency": "USD",
+    "product_tph": 268,
+    "design_p2o5_tph": 150,
+    "product": "dap",
+    "country": "Morocco"
+}

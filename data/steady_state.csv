@@ -1,0 +1,16 @@
+variable,value,unit,description
+:p2o5_fed,150.0,:t_ph,P2o5 fed
+:excess,0.0256,:fraction,Excess
+:free_so4,2.6606,:wt_pct,Free so4
+:temperature,77.2418,:deg_c,Temperature
+:efficiency,0.9792,:fraction,Efficiency
+:p2o5_digested,146.878,:t_ph,P2o5 digested
+:gypsum,737.2408,:t_ph,Gypsum
+:p2o5_acid,142.4545,:t_ph,P2o5 acid
+:water_liquor,366.0578,:t_ph,Water liquor
+:acid_strength_weak,28.014,:wt_pct,Acid strength weak
+:steam,65.1559,:t_ph,Steam
+:water_evaporated,234.5613,:t_ph,Water evaporated
+:ammonia,51.9605,:t_ph,Ammonia
+:product,235.1041,:t_ph,Product
+:merchant_p2o5,34.1891,:t_ph,Merchant p2o5

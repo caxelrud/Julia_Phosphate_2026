@@ -1,0 +1,38 @@
+framework,clause,title,metric,value,unit,target,status,margin_pct,evidence
+:iso_50001,:energy_review,Energy review of the process,:specific_energy,2.015,:gj_per_t,12.5,:compliant,83.8798,:kpi_report
+:iso_50001,:enpi,Energy performance indicator,:spec_energy_vs_design,16.1202,:pct,100.0,:compliant,83.8798,:kpi_report
+:iso_50001,:baseline,Baseline data quality,:completeness,99.8195,:pct,98.0,:compliant,1.8566,:quality_register
+:iso_50001,:objectives,Objectives and targets,:targets_met,85.0,:pct,70.0,:compliant,21.4286,:target_register
+:iso_50001,:operational_control,Operational control,:critical_findings,29.0,:count,0.0,:noncompliant,,:diagnostics_register
+:iso_50001,:monitoring,Monitoring and measurement,:metered_signals,64.0,:count,40.0,:compliant,60.0,:instrument_register
+:iso_14001,:aspects,Significant environmental aspects,:stack_fluoride,2.7096,:count,5.0,:compliant,45.8078,:kpi_report
+:iso_14001,:emissions,Emissions monitoring,:stack_dust,21.784,:count,30.0,:compliant,27.3867,:kpi_report
+:iso_14001,:waste,Waste management,:gypsum_free_p2o5,0.4998,:wt_pct,1.0,:compliant,50.0219,:kpi_report
+:iso_14001,:water,Water balance and discharge,:water_per_p2o5,3.3949,:t_ph,8.0,:compliant,57.5633,:kpi_report
+:iso_14001,:emergency,Emergency preparedness,:scrubber_ph,6.401,:count,5.6,:compliant,14.3036,:kpi_report
+:iso_46001,:water_review,Water use review,:water_per_p2o5,3.3949,:t_ph,8.0,:compliant,57.5633,:kpi_report
+:iso_46001,:reuse,Water reuse,:water_recovery,70.3406,:pct,65.0,:compliant,8.2164,:kpi_report
+:iso_46001,:effluent,Effluent quality,:effluent_ph,7.3993,:count,8.5,:compliant,12.9493,:kpi_report
+:iso_9001,:product_spec,Product specification,:product_n,18.1409,:wt_pct,17.4,:compliant,4.2583,:kpi_report
+:iso_9001,:moisture,Product moisture,:product_moisture,1.7505,:wt_pct,2.0,:compliant,12.4745,:kpi_report
+:iso_9001,:solubility,Product solubility,:product_wsp,88.497,:wt_pct,85.0,:compliant,4.1142,:kpi_report
+:iso_9001,:process_control,Control of production,:acid_strength,55.8526,:wt_pct,50.5,:compliant,10.5992,:kpi_report
+:ghg_protocol,:scope_1,Scope 1 quantification,:scope_1_t,36338.0214,:t,48.0,:noncompliant,-75604.2112,:carbon_inventory
+:ghg_protocol,:scope_2,Scope 2 quantification,:scope_2_t,21927.7996,:t,240.0,:noncompliant,-9036.5832,:carbon_inventory
+:ghg_protocol,:intensity,Emissions intensity,:carbon_intensity,56.107,:kg_ph,145.0,:compliant,61.3055,:carbon_inventory
+:ghg_protocol,:factors,Emission factor register,:factor_count,4.0,:count,4.0,:compliant,0.0,:carbon_inventory
+:eu_ied,:bat_emissions,BAT emission levels,:stack_fluoride,2.7096,:count,5.0,:compliant,45.8078,:kpi_report
+:eu_ied,:energy_efficiency,Energy efficiency of BAT,:specific_energy,2.015,:gj_per_t,12.5,:compliant,83.8798,:kpi_report
+:eu_ied,:monitoring,Continuous monitoring,:completeness,99.8195,:pct,98.0,:compliant,1.8566,:quality_register
+:eu_ied,:waste,Waste management plan,:gypsum_free_p2o5,0.4998,:wt_pct,1.0,:compliant,50.0219,:kpi_report
+:us_epa_40cfr63,:fluoride,Fluoride emission limit,:stack_fluoride,2.7096,:count,5.0,:compliant,45.8078,:kpi_report
+:us_epa_40cfr63,:scrubber,Scrubber operating limit,:scrubber_ph,6.401,:count,5.6,:compliant,14.3036,:kpi_report
+:us_epa_40cfr63,:records,Record keeping,:completeness,99.8195,:pct,98.0,:compliant,1.8566,:quality_register
+:ifa_bat,:recovery,P2O5 recovery of the route,:p2o5_recovery,83.8251,:pct,94.0,:noncompliant,-10.8243,:kpi_report
+:ifa_bat,:acid_demand,Specific acid demand,:acid_consumption,2.8293,:t_ph,2.85,:compliant,0.7252,:kpi_report
+:ifa_bat,:water_soluble,Water-soluble loss,:water_soluble_loss,2.3355,:pct,2.0,:noncompliant,-16.775,:kpi_report
+:ifa_bat,:fluorine,Fluorine recovery,:fluorine_recovery,92.0,:pct,80.0,:compliant,15.0,:kpi_report
+:ifa_bat,:grind,Liberation of the ore,:grind_p80,150.5548,:um,170.0,:compliant,11.4384,:kpi_report
+:phosphogypsum_code,:stack_quality,Gypsum quality to the stack,:gypsum_free_p2o5,0.4998,:wt_pct,1.0,:compliant,50.0219,:kpi_report
+:phosphogypsum_code,:water_return,Water return to the plant,:water_recovery,70.3406,:pct,65.0,:compliant,8.2164,:kpi_report
+:phosphogypsum_code,:dust,Dust control on the stack,:stack_dust,21.784,:count,30.0,:compliant,27.3867,:kpi_report

@@ -1,0 +1,16 @@
+fault,role,kind,magnitude,unit,from_hour,to_hour,hours,note
+:cooling_fouling,:reactor_temperature,:drift,6.2,:deg_c,721.0,984.0,264.0,cooler fouling raises the attack temperature
+:sulfate_deficit,:sulfate_ratio,:bias,-1.7,:wt_pct,1249.0,1536.0,288.0,sulphuric acid starvation, free SO4 collapses
+:grind_coarse,:grind_p80,:bias,42.0,:um,1705.0,1896.0,192.0,cyclone roping sends coarse slurry to flotation
+:reagent_starvation,:concentrate_grade,:bias,-1.5,:wt_pct,2089.0,2352.0,264.0,fatty-acid dose below the setpoint
+:filter_cloth_blinding,:filtration_rate,:drift,-1.9,:t_per_m2_d,2545.0,2712.0,168.0,blinded cloth drops the filter rate
+:evaporator_fouling,:steam_flow,:drift,13.5,:t_ph,3073.0,3432.0,360.0,scale on the evaporator tubes costs steam
+:acid_strength_loss,:acid_strength,:drift,-1.6,:wt_pct,3505.0,3816.0,312.0,the same scale dilutes the merchant acid
+:scrubber_breakthrough,:stack_fluoride,:bias,2.4,:count,3985.0,4368.0,384.0,scrubber pH excursion, fluorine to the stack
+:mill_liner_wear,:mill_load,:drift,430.0,:kw,4369.0,4632.0,264.0,worn liners demand more power for the same grind
+:pump_cavitation,:pump_vibration,:bias,3.6,:count,4825.0,5064.0,240.0,cavitating filtrate pump
+:sparger_blockage,:product_n,:bias,-1.2,:wt_pct,5281.0,5544.0,264.0,blocked ammonia sparger starves the product
+:crusher_gap_drift,:oversize_pct,:bias,6.5,:pct,5761.0,6024.0,264.0,the oversize crusher gap has opened
+:rock_grade_drift,:rock_grade,:drift,1.3,:wt_pct,6217.0,6408.0,192.0,analyser drift on the rock grade
+:cyclone_roping,:slurry_density,:bias,6.4,:wt_pct,6673.0,6912.0,240.0,cyclone roping thickens the mill discharge
+:ammonia_overfeed,:product_n,:bias,1.1,:wt_pct,7129.0,7320.0,192.0,ammonia overfeed after a controller retune

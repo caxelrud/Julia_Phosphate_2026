@@ -1,0 +1,18 @@
+# Julia
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+/docs/build/
+.DS_Store
+
+# Generated interval data (large; regenerate with scripts/generate_reports.jl).
+# The printouts, PDFs and summary JSON are committed because they are the
+# deliverable of this repository.
+data/readings_*.csv
+data/spectra_*.csv
+
+# Local scratch
+_*
+tmp/
+*.log
+*.err

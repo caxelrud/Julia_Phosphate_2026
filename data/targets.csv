@@ -1,0 +1,21 @@
+metric,actual,target,unit,comparator,status,margin_pct,basis
+:acid_consumption,2.8293,2.85,:t_ph,:le,:compliant,0.7252,t H2SO4 per t P2O5, stoichiometric demand plus the registered excess
+:acid_strength,55.8526,52.0,:wt_pct,:ge,:compliant,7.4088,P2O5 in the merchant acid
+:ammonia_consumption,0.3649,0.49,:t_ph,:le,:compliant,25.5335,t NH3 per t P2O5 of DAP
+:availability,97.8082,92.0,:pct,:ge,:compliant,6.3133,hours the reaction section was available
+:carbon_intensity,56.107,145.0,:kg_ph,:le,:compliant,61.3055,kgCO2e per t P2O5, scope 1 and 2
+:completeness,99.8195,98.0,:pct,:ge,:compliant,1.8566,usable intervals of the historian
+:electricity_consumption,56.9146,210.0,:kwh_per_t,:le,:compliant,72.8978,kWh per t P2O5, mine to bagged product
+:filtration_rate,8.4442,5.0,:t_per_m2_d,:ge,:compliant,68.8831,t P2O5 per m2 of filter per day
+:flotation_recovery,86.2403,86.0,:pct,:ge,:compliant,0.2794,registered recoveries of the rougher-cleaner circuit
+:grind_p80,150.5548,150.0,:um,:le,:at_risk,-0.3699,liberation size of the blend
+:plant_p2o5_recovery,83.8251,84.0,:pct,:ge,:at_risk,-0.2082,P2O5 in the product plus the merchant acid over the P2O5 in the flotation feed
+:product_moisture,1.7505,2.0,:wt_pct,:le,:compliant,12.4745,moisture of the bagged product
+:product_wsp,88.497,85.0,:wt_pct,:ge,:compliant,4.1142,water-soluble P2O5 of the product
+:specific_energy,2.015,3.5,:gj_per_t,:le,:compliant,42.428,GJ per t P2O5: steam of the evaporators, fuel of the dryers and power
+:stack_dust,21.784,30.0,:count,:le,:compliant,27.3867,mg dust per Nm3 at the stack, the permitted limit
+:stack_fluoride,2.7096,5.0,:count,:le,:compliant,45.8078,mg F per Nm3 at the stack, the permitted limit
+:steam_consumption,0.4041,0.65,:t_ph,:le,:compliant,37.8278,t steam per t P2O5 fed, weak acid at 28.5 % raised to 52 % at an economy of 3.0
+:sulphur_consumption,0.9291,0.95,:t_ph,:le,:compliant,2.2022,t sulphur per t P2O5 at 99.7% conversion
+:variable_cost,391.261,400.0,:usd_per_t,:le,:compliant,2.1847,variable cost per tonne of DAP
+:water_soluble_loss,2.3355,2.0,:pct,:le,:noncompliant,-16.775,water-soluble P2O5 lost with the gypsum, per cent of the P2O5 fed
