@@ -16,3 +16,6 @@ _*
 tmp/
 *.log
 *.err
+
+# Pluto writes a backup beside a notebook it saves.
+notebooks/*backup*.jl

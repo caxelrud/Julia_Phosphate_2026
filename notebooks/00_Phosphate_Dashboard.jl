@@ -4,7 +4,7 @@
 using Markdown
 using InteractiveUtils
 
-# ╔═╡ 0d100001
+# ╔═╡ f457d1a0-b787-11f1-afcc-5b9fb13a16b6
 begin
 	import Pkg
 	const ROOT = isfile(joinpath(@__DIR__, "..", "Project.toml")) ?
@@ -14,7 +14,7 @@ begin
 	using Dates, Statistics, Plots
 end
 
-# ╔═╡ 0d100002
+# ╔═╡ f45846d0-b787-11f1-8af8-8531034c75ee
 md"""
 # Phosphate complex dashboard
 
@@ -31,7 +31,7 @@ and the figures below are produced by the same functions that render the PDF
 printout, so the notebook and the printout cannot drift apart.
 """
 
-# ╔═╡ 0d100003
+# ╔═╡ f45846d0-b787-11f1-8d0b-f3de8316b9b5
 md"""
 ## 1. The vocabulary and the registered design
 
@@ -39,16 +39,16 @@ md"""
 produced, and `default_design` is the design every model of the package reads.
 """
 
-# ╔═╡ 0d100004
+# ╔═╡ f45846d0-b787-11f1-8e81-b199ac13790c
 validate_vocabulary()
 
-# ╔═╡ 0d100005
+# ╔═╡ f45846d0-b787-11f1-b852-b9721ae5cef8
 design = default_design()
 
-# ╔═╡ 0d100006
+# ╔═╡ f45846d0-b787-11f1-bd25-99591ada31a1
 design_summary(design)
 
-# ╔═╡ 0d100007
+# ╔═╡ f45846d0-b787-11f1-95a6-5190d647baa9
 md"""
 ## 2. The flowsheet
 
@@ -57,13 +57,13 @@ each one takes and produces. `default_flowsheet` builds them from the design, so
 capacity change travels through the whole package.
 """
 
-# ╔═╡ 0d100008
+# ╔═╡ f45846d0-b787-11f1-ab3c-f50dbc5c5638
 flowsheet = default_flowsheet(design)
 
-# ╔═╡ 0d100009
+# ╔═╡ f45846d0-b787-11f1-b37f-a3ca08fa8a23
 flowsheet_summary(flowsheet)
 
-# ╔═╡ 0d10000a
+# ╔═╡ f45846d0-b787-11f1-b325-33532701b08d
 begin
 	rows = flowsheet_table(flowsheet)
 	table_html(rows; columns = [:unit, :area, :kind, :feeds, :products, :capacity],
@@ -73,7 +73,7 @@ begin
 			:area => v -> code_string(v), :kind => v -> code_string(v)))
 end
 
-# ╔═╡ 0d10000b
+# ╔═╡ f45846d0-b787-11f1-b8f0-3185f0fe2793
 md"""
 ## 3. The campaign
 
@@ -83,16 +83,16 @@ deviations injected on purpose (a fouled cooler, a blinded filter cloth, a worn 
 liner, an ammonia overfeed) so that the fault detector can be scored.
 """
 
-# ╔═╡ 0d10000c
+# ╔═╡ f45846d0-b787-11f1-b6fc-dd2e00b82fd9
 campaign = generate_campaign(design; days = 120, seed = 20260101)
 
-# ╔═╡ 0d10000d
+# ╔═╡ f45846d0-b787-11f1-abce-cd0be40f374a
 campaign_summary(campaign)
 
-# ╔═╡ 0d10000e
+# ╔═╡ f45846d0-b787-11f1-8e8a-d39ab7fbcf77
 deviation_table(campaign.deviations)
 
-# ╔═╡ 0d10000f
+# ╔═╡ f45846d0-b787-11f1-8bbe-517d2ebb06c0
 md"""
 ## 4. The performance of the campaign
 
@@ -101,13 +101,13 @@ section, the steam and power of the tonne of P2O5, the quality of the product, t
 emissions, the cost and the carbon.
 """
 
-# ╔═╡ 0d100010
+# ╔═╡ f45846d0-b787-11f1-8627-77867eeb7769
 kpi = site_kpis(campaign)
 
-# ╔═╡ 0d100011
+# ╔═╡ f45846d0-b787-11f1-ad36-2348bf739223
 sort(collect(keys(kpi)); by = String)
 
-# ╔═╡ 0d100012
+# ╔═╡ f45846d0-b787-11f1-8965-af293ae05cf0
 begin
 	fdd = fault_detection_report(campaign, kpi)
 	compliance = compliance_report(kpi, fdd)
@@ -116,22 +116,22 @@ begin
 		compliance = compliance[:status])
 end
 
-# ╔═╡ 0d100013
+# ╔═╡ f45846d0-b787-11f1-a780-65f3f25d2446
 Cards = area_cards(kpi)
 
-# ╔═╡ 0d100014
+# ╔═╡ f45846d0-b787-11f1-b9fe-157492a27086
 PrintableHTML(cards_html(Cards; columns = 5))
 
-# ╔═╡ 0d100015
+# ╔═╡ f45846d0-b787-11f1-87fd-79ddf441ca6d
 figures[:recovery_cascade][:plot]
 
-# ╔═╡ 0d100016
+# ╔═╡ f45846d0-b787-11f1-9d1f-2f38283a4910
 figures[:production][:plot]
 
-# ╔═╡ 0d100017
+# ╔═╡ f45846d0-b787-11f1-bc34-b398d1f397fd
 figures[:targets][:plot]
 
-# ╔═╡ 0d100018
+# ╔═╡ f45846d0-b787-11f1-8933-edd7a1d7633a
 md"""
 ## 5. The printout and its PDF
 
@@ -140,21 +140,21 @@ print it. The last cell writes the printout and prints it to PDF with the headle
 browser, so the PDF of this notebook and the HTML it displays are the same document.
 """
 
-# ╔═╡ 0d100019
+# ╔═╡ f45846d0-b787-11f1-bd7f-094fcf43249b
 report = report_bundle(PipelineConfig(root = ROOT, days = 100, seed = 20260101,
 	vision_samples = 60, vision_size = 64, acoustic_samples = 40, acoustic_n = 2048,
 	mpc_steps = 12, dynamic_hours = 24.0, groups = [:all], render_pdf = false))
 
-# ╔═╡ 0d10001a
+# ╔═╡ f45846d0-b787-11f1-8244-f57fb58e744b
 preview_executive(report)
 
-# ╔═╡ 0d10001b
+# ╔═╡ f45846d0-b787-11f1-bacb-7f52e8079f0c
 preview_quality(report)
 
-# ╔═╡ 0d10001c
+# ╔═╡ f45846d0-b787-11f1-b724-4b6d5f09979c
 print_report_pdf(report; id = :dashboard, group = :all, root = ROOT)
 
-# ╔═╡ 0d10001d
+# ╔═╡ f45846d0-b787-11f1-94f3-57ea6d9dad8d
 md"""
 ---
 *Everything in this notebook and in its PDF comes from the same bundle, and the bundle
@@ -162,32 +162,32 @@ comes from the design and the seed recorded above.*
 """
 
 # ╔═╡ Cell order:
-# ╠═0d100001
-# ╠═0d100002
-# ╠═0d100003
-# ╠═0d100004
-# ╠═0d100005
-# ╠═0d100006
-# ╠═0d100007
-# ╠═0d100008
-# ╠═0d100009
-# ╠═0d10000a
-# ╠═0d10000b
-# ╠═0d10000c
-# ╠═0d10000d
-# ╠═0d10000e
-# ╠═0d10000f
-# ╠═0d100010
-# ╠═0d100011
-# ╠═0d100012
-# ╠═0d100013
-# ╠═0d100014
-# ╠═0d100015
-# ╠═0d100016
-# ╠═0d100017
-# ╠═0d100018
-# ╠═0d100019
-# ╠═0d10001a
-# ╠═0d10001b
-# ╠═0d10001c
-# ╠═0d10001d
+# ╠═f457d1a0-b787-11f1-afcc-5b9fb13a16b6
+# ╠═f45846d0-b787-11f1-8af8-8531034c75ee
+# ╠═f45846d0-b787-11f1-8d0b-f3de8316b9b5
+# ╠═f45846d0-b787-11f1-8e81-b199ac13790c
+# ╠═f45846d0-b787-11f1-b852-b9721ae5cef8
+# ╠═f45846d0-b787-11f1-bd25-99591ada31a1
+# ╠═f45846d0-b787-11f1-95a6-5190d647baa9
+# ╠═f45846d0-b787-11f1-ab3c-f50dbc5c5638
+# ╠═f45846d0-b787-11f1-b37f-a3ca08fa8a23
+# ╠═f45846d0-b787-11f1-b325-33532701b08d
+# ╠═f45846d0-b787-11f1-b8f0-3185f0fe2793
+# ╠═f45846d0-b787-11f1-b6fc-dd2e00b82fd9
+# ╠═f45846d0-b787-11f1-abce-cd0be40f374a
+# ╠═f45846d0-b787-11f1-8e8a-d39ab7fbcf77
+# ╠═f45846d0-b787-11f1-8bbe-517d2ebb06c0
+# ╠═f45846d0-b787-11f1-8627-77867eeb7769
+# ╠═f45846d0-b787-11f1-ad36-2348bf739223
+# ╠═f45846d0-b787-11f1-8965-af293ae05cf0
+# ╠═f45846d0-b787-11f1-a780-65f3f25d2446
+# ╠═f45846d0-b787-11f1-b9fe-157492a27086
+# ╠═f45846d0-b787-11f1-87fd-79ddf441ca6d
+# ╠═f45846d0-b787-11f1-9d1f-2f38283a4910
+# ╠═f45846d0-b787-11f1-bc34-b398d1f397fd
+# ╠═f45846d0-b787-11f1-8933-edd7a1d7633a
+# ╠═f45846d0-b787-11f1-bd7f-094fcf43249b
+# ╠═f45846d0-b787-11f1-8244-f57fb58e744b
+# ╠═f45846d0-b787-11f1-bacb-7f52e8079f0c
+# ╠═f45846d0-b787-11f1-b724-4b6d5f09979c
+# ╠═f45846d0-b787-11f1-94f3-57ea6d9dad8d
