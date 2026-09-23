@@ -152,6 +152,11 @@ cannot answer (`:degraded`) instead of guessing. `sensor_health` watches the dri
 * `reports/html/` -- the printouts of the report and of its sections;
 * `reports/pdf/` -- the same printed to PDF by a headless Chromium, the engine of the
   browser "Print to PDF";
+* `reports/pdf/phosphoric_acid.pdf` -- the acid route printed on its own, under its own
+  title: the balance of the P2O5 from the attack to the storage tank, the specification of
+  the merchant grade against the six limits of the traded acid, what a tonne of P2O5 costs
+  as acid and what it sells for; `reports/pdf/notebook_acid.pdf` is the printout the acid
+  notebook writes in its last cell, from the same bundle;
 
 and each notebook writes its own printout and its PDF in its last cell, so what the
 notebook displays and what the file contains are the same document by construction.

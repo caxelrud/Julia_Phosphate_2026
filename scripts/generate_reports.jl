@@ -86,6 +86,28 @@ function main(args = ARGS)
 
     t0 = time()
     result = run_pipeline(cfg)
+    ## ---- the phosphoric-acid document -------------------------------------------------
+    ## The acid route printed on its own, under a title that says what it is, together
+    ## with the printout the acid notebook writes in its last cell. Both come from the
+    ## same bundle, so the file and what the notebook displays cannot disagree.
+    if cfg.render_pdf
+        acid_title = "Phosphoric acid: the balance, the specification and the cost"
+        acid_html = joinpath(cfg.root, "reports", "html", "phosphoric_acid.html")
+        acid_pdf = joinpath(cfg.root, "reports", "pdf", "phosphoric_acid.pdf")
+        try
+            write_printout(acid_html, section_html(result[:bundle], :acid; title = acid_title))
+            html_to_pdf(acid_html, acid_pdf; chrome = cfg.chrome)
+            notebook = print_report_pdf(result[:bundle]; id = :acid, group = :acid,
+                root = cfg.root, chrome = cfg.chrome, title = acid_title)
+            println("acid printout     : ", basename(acid_pdf), " (",
+                round(filesize(acid_pdf) / 1.0e3, digits = 1), " kB) and ",
+                basename(notebook[:pdf]), " (",
+                round(notebook[:pdf_bytes] / 1.0e3, digits = 1), " kB)")
+        catch err
+            println("acid printout     : skipped (",
+                first(replace(sprint(showerror, err), "\n" => " "), 120), ")")
+        end
+    end
     println()
     report_manifest(result[:manifest])
     println()
